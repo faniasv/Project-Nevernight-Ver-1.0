@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 786c7bc14905c2f45b560b57ac49e2c3, type: 3}
+  m_Name: DigAct2_EndNormal
+  m_EditorClassIdentifier: 
+  keepPanelOpenAtEnd: 0
+  lines:
+  - characterName: AVA
+    lineText: Ternyata... vas-vas ini penuh dengan warna dan bisa diperbaiki lagi
+      ya
+    commands: []
+  - characterName: MINION
+    lineText: Karena kamu sudah tahu cerita di balik setiap pecahannya?
+    commands: []
+  - characterName: AVA
+    lineText: "Iya. Kenangan dan perasaan itu\u2026"
+    commands: []
+  - characterName: AVA
+    lineText: "\u2026 mereka bukan lagi hal asing yang perlu kuhindari. Mereka adalah
+      bagian dari warnaku"
+    commands: []
+  - characterName: MINION
+    lineText: Lalu, apa yang akan kamu lakukan sekarang?
+    commands: []
+  - characterName: AVA
+    lineText: Aku rasa aku menemukan jawaban apa yang seharusnya aku lakukan malam
+      ini
+    commands: []
+  - characterName: MINION
+    lineText: Terima kasih sudah menemaniku mengingat
+    commands: []

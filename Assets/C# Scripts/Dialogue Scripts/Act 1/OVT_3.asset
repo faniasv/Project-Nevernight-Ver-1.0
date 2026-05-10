@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 786c7bc14905c2f45b560b57ac49e2c3, type: 3}
+  m_Name: OVT_3
+  m_EditorClassIdentifier: 
+  keepPanelOpenAtEnd: 1
+  lines:
+  - characterName: MINION
+    lineText: Berhenti!
+    commands:
+    - type: 1
+      value: 
+      audioAsset: {fileID: 0}
+      spriteAsset: {fileID: 21300000, guid: 41ec49d6f283cf34cb036e062c0be2da, type: 3}
+  - characterName: MINION
+    lineText: Kamu nggak sadar ya?
+    commands: []
+  - characterName: MINION
+    lineText: Kamu nggak lagi nyari solusi, kamu cuma lagi nyiksa dirimu, Ava.
+    commands:
+    - type: 1
+      value: 
+      audioAsset: {fileID: 0}
+      spriteAsset: {fileID: 21300000, guid: 0ec1120d3dfe0db41920161ae21e9ca0, type: 3}
+  - characterName: AVA
+    lineText: "Aku hanya ingin berusaha\u2026"
+    commands:
+    - type: 1
+      value: 
+      audioAsset: {fileID: 0}
+      spriteAsset: {fileID: 21300000, guid: 9bf943f71623c264885804e87a446f0f, type: 3}
+  - characterName: AVA
+    lineText: Tahu apa kamu tentang rasanya berusaha semampumu saat kamu lelah?
+    commands:
+    - type: 1
+      value: 
+      audioAsset: {fileID: 0}
+      spriteAsset: {fileID: 21300000, guid: 93d40e3a07f297444827a05118da7db5, type: 3}
+  - characterName: MINION
+    lineText: Aku tahu rasanya lelah, dan terus berusaha bukanlah jalan keluar
+    commands: []
+  - characterName: MINION
+    lineText: "Coba amati sekelilingmu\u2026"
+    commands: []
+  - characterName: AVA
+    lineText: Ada foto, dan aku mulai mengingat sesuatu.
+    commands:
+    - type: 1
+      value: 
+      audioAsset: {fileID: 0}
+      spriteAsset: {fileID: 21300000, guid: 9bf943f71623c264885804e87a446f0f, type: 3}

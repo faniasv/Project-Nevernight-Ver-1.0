@@ -1,0 +1,172 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 786c7bc14905c2f45b560b57ac49e2c3, type: 3}
+  m_Name: Dlg_Act1_Intro
+  m_EditorClassIdentifier: 
+  keepPanelOpenAtEnd: 0
+  lines:
+  - characterName: AVA
+    lineText: Hmm, semoga aku bisa tidur nyenyak malam ini
+    commands:
+    - type: 1
+      value: 
+      audioAsset: {fileID: 0}
+      spriteAsset: {fileID: 21300000, guid: 3fe5a4721fd08fc47bba1165d066d955, type: 3}
+  - characterName: AVA
+    lineText: Oke, tenang... kita pasti bisa tidur
+    commands:
+    - type: 1
+      value: 
+      audioAsset: {fileID: 0}
+      spriteAsset: {fileID: 21300000, guid: fefa11c2cd852f144ab308e9c8a7d412, type: 3}
+  - characterName: MINION
+    lineText: Astaga, gimana nih? Banyak banget yang perlu dikerjain sekarang.
+    commands:
+    - type: 1
+      value: 
+      audioAsset: {fileID: 0}
+      spriteAsset: {fileID: 21300000, guid: bff574c99f1bd214e808cef7cc10fa71, type: 3}
+  - characterName: MINION
+    lineText: Mulai dari mana ya?
+    commands:
+    - type: 1
+      value: 
+      audioAsset: {fileID: 0}
+      spriteAsset: {fileID: 21300000, guid: 73bde31c1599dc3498c9a2d760199165, type: 3}
+  - characterName: MINION
+    lineText: Bayar sewa apartemen?
+    commands:
+    - type: 1
+      value: 
+      audioAsset: {fileID: 0}
+      spriteAsset: {fileID: 21300000, guid: 41ec49d6f283cf34cb036e062c0be2da, type: 3}
+  - characterName: MINION
+    lineText: Masih seminggu lagi sih
+    commands:
+    - type: 1
+      value: 
+      audioAsset: {fileID: 0}
+      spriteAsset: {fileID: 0}
+  - characterName: MINION
+    lineText: tapi... aku takut ntar uangnya terpakai
+    commands: []
+  - characterName: MINION
+    lineText: Mungkin bayar besok saja?
+    commands: []
+  - characterName: MINION
+    lineText: Ah, tapi dia tidak punya waktu
+    commands: []
+  - characterName: MINION
+    lineText: Dia harus membuat presentasi itu untuk rapat sore
+    commands: []
+  - characterName: MINION
+    lineText: Bagaimana dia luangin waktu?
+    commands: []
+  - characterName: MINION
+    lineText: Gimana kalo ada yang ngajak dia makan siang bareng?
+    commands: []
+  - characterName: MINION
+    lineText: Dia terlalu takut untuk bilang tidak...
+    commands: []
+  - characterName: AVA
+    lineText: Bisa... berhenti bicara?
+    commands:
+    - type: 1
+      value: 
+      audioAsset: {fileID: 0}
+      spriteAsset: {fileID: 21300000, guid: 3fe5a4721fd08fc47bba1165d066d955, type: 3}
+  - characterName: AVA
+    lineText: Aku hanya ingin tidur.
+    commands: []
+  - characterName: MINION
+    lineText: Apa? Tidur? Tidak bisa
+    commands:
+    - type: 1
+      value: 
+      audioAsset: {fileID: 0}
+      spriteAsset: {fileID: 21300000, guid: 41ec49d6f283cf34cb036e062c0be2da, type: 3}
+  - characterName: MINION
+    lineText: Kamu belum selesai bikin target buat proyek desainmu.
+    commands: []
+  - characterName: MINION
+    lineText: Oh, ini juga
+    commands: []
+  - characterName: MINION
+    lineText: ' Jangan lupa, besok ulang tahun rekan kerjamu'
+    commands: []
+  - characterName: MINION
+    lineText: Kamu harus membeli kado yang sempurna.
+    commands:
+    - type: 1
+      value: 
+      audioAsset: {fileID: 0}
+      spriteAsset: {fileID: 21300000, guid: 53d12dd6ff2623a43b3c68313c4c5f7a, type: 3}
+  - characterName: MINION
+    lineText: Tapi kamu ada presentasi sore itu
+    commands: []
+  - characterName: MINION
+    lineText: Kamu tidak bisa melakukannya di siang hari karena kamu harus ikut makan
+      siang tim
+    commands:
+    - type: 1
+      value: 
+      audioAsset: {fileID: 0}
+      spriteAsset: {fileID: 21300000, guid: 976c5a881d85b4743a5d31f74f6ec50c, type: 3}
+  - characterName: MINION
+    lineText: Aku tahu kamu tidak akan bisa menolaknya
+    commands:
+    - type: 1
+      value: 
+      audioAsset: {fileID: 0}
+      spriteAsset: {fileID: 21300000, guid: 53d12dd6ff2623a43b3c68313c4c5f7a, type: 3}
+  - characterName: AVA
+    lineText: 'Aduh... '
+    commands:
+    - type: 1
+      value: 
+      audioAsset: {fileID: 0}
+      spriteAsset: {fileID: 21300000, guid: 93d40e3a07f297444827a05118da7db5, type: 3}
+  - characterName: AVA
+    lineText: ya... sebentar
+    commands:
+    - type: 1
+      value: 
+      audioAsset: {fileID: 0}
+      spriteAsset: {fileID: 21300000, guid: f28c52487a794dc42a6e477e87e5fa96, type: 3}
+  - characterName: AVA
+    lineText: ...maaf, aku bingung banget
+    commands:
+    - type: 1
+      value: 
+      audioAsset: {fileID: 0}
+      spriteAsset: {fileID: 21300000, guid: 9bf943f71623c264885804e87a446f0f, type: 3}
+  - characterName: AVA
+    lineText: Oke. Apa yang harus kulakukan?
+    commands: []
+  - characterName: MINION
+    lineText: Buat daftar....
+    commands: []
+  - characterName: MINION
+    lineText: ....hal-hal yang harus kamu lakukan sekarang
+    commands: []
+  - characterName: MINION
+    lineText: Jadi semuanya berjalan lancar besok
+    commands: []
+  - characterName: AVA
+    lineText: 'I-itu banyak sekali... '
+    commands: []
+  - characterName: AVA
+    lineText: Bagaimana cara mengaturnya?
+    commands: []
+  - characterName: MINION
+    lineText: Pilih 3 dari 6 tugas, pilih yang penting oke?
+    commands: []
