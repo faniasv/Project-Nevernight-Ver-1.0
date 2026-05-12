@@ -17,10 +17,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SC_Act2.unity
     guid: 49e190fa103e5ae419ec1161e0cbf38b
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/SC_Act3.unity
-    guid: da385481458f20c4f9fb4ff3f3704124
-  - enabled: 1
+    guid: 4b753f32cfac6b54f8a590108f67699e
+  - enabled: 0
     path: Assets/Scenes/SC_Act4.unity
     guid: 9b248fbd1c5b34e43878b8270b2d6a87
   m_configObjects: {}

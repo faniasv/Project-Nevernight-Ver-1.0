@@ -3,19 +3,27 @@ using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.Events;
-using TMPro; // WAJIB TAMBAHIN INI
+using TMPro;
 
 public class IntroSequence : MonoBehaviour
 {
-    [Header("Panel References")]
-    public List<CanvasGroup> panels;
+    [System.Serializable]
+    public struct IntroStep // Satu paket untuk tiap adegan opening
+    {
+        public CanvasGroup panel;
+        [TextArea(2, 5)] public string caption;
+        public string sfxName; // Nama SFX yang ada di AudioData kamu
+        public AudioClip ambienceClip; // Opsional: jika ingin ambience spesifik yang loop
+    }
+
+    [Header("Sequence Settings")]
+    public List<IntroStep> introSteps;
     public float fadeDuration = 1.5f;
     public float waitDuration = 1f;
     public float finalWait = 2.0f;
 
-    [Header("Caption References")]
-    public TextMeshProUGUI captionTextDisplay; // Tarik objek TMP Text ke sini
-    [TextArea(2, 5)] public List<string> captions; // Isi teksnya di Inspector
+    [Header("UI References")]
+    public TextMeshProUGUI captionTextDisplay;
 
     [Header("Scene Navigation")]
     public int nextActNumber = 2; 
@@ -25,7 +33,6 @@ public class IntroSequence : MonoBehaviour
 
     void Start()
     {
-        // Pastikan teks kosong di awal
         if (captionTextDisplay != null) captionTextDisplay.text = "";
         StartCoroutine(PlaySequence());
     }
@@ -33,35 +40,46 @@ public class IntroSequence : MonoBehaviour
     IEnumerator PlaySequence()
     {
         // Sembunyikan semua panel dulu
-        foreach (var p in panels) p.alpha = 0;
+        foreach (var step in introSteps) step.panel.alpha = 0;
 
-        for (int i = 0; i < panels.Count; i++)
+        for (int i = 0; i < introSteps.Count; i++)
         {
-            // 1. Update Teks Caption (jika ada)
-            if (captionTextDisplay != null && i < captions.Count)
+            IntroStep currentStep = introSteps[i];
+
+            // 1. Play Audio (SFX atau Ambience)
+            if (!string.IsNullOrEmpty(currentStep.sfxName) && AudioManager.instance != null)
             {
-                captionTextDisplay.text = captions[i];
-                // Opsional: Kalau mau teksnya juga fade in, lo bisa taruh CanvasGroup di objek teksnya
+                AudioManager.instance.PlaySFX(currentStep.sfxName);
+            }
+            
+            // [Optional] Jika ada ambience spesifik per gambar
+            if (currentStep.ambienceClip != null && AudioManager.instance != null)
+            {
+                AudioManager.instance.PlayAmbience(currentStep.ambienceClip);
             }
 
-            // 2. Fade In Panel
+            // 2. Update Teks
+            if (captionTextDisplay != null)
+            {
+                captionTextDisplay.text = currentStep.caption;
+            }
+
+            // 3. Fade In Panel
             float timer = 0f;
             while (timer < fadeDuration)
             {
                 timer += Time.deltaTime;
-                panels[i].alpha = Mathf.Lerp(0, 1, timer / fadeDuration);
+                currentStep.panel.alpha = Mathf.Lerp(0, 1, timer / fadeDuration);
                 yield return null;
             }
-            panels[i].alpha = 1;
+            currentStep.panel.alpha = 1;
 
-            // 3. Tunggu sebelum panel berikutnya
+            // 4. Tunggu
             yield return new WaitForSeconds(waitDuration);
         }
 
         yield return new WaitForSeconds(finalWait);
         OnIntroFinished.Invoke();
-
-        Debug.Log("Intro Selesai. Pindah ke Act: " + nextActNumber);
         GameEvents.OnActChanged?.Invoke(nextActNumber);
     }
 }
