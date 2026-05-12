@@ -79,6 +79,7 @@ public class Puzzle1_Manager : MonoBehaviour
             if (data != null) currentTotalLoad += data.taskLoad;
         }
         mentalLoadSlider.value = currentTotalLoad;
+        if (AudioManager.instance != null) AudioManager.instance.PlaySFX("TaskSlider");
     }
 
     public void OnSaveButtonPressed()
@@ -91,6 +92,7 @@ public class Puzzle1_Manager : MonoBehaviour
     {
         SetPuzzleInteractive(false);
         if (errorPanel != null) errorPanel.SetActive(true);
+        if (AudioManager.instance != null) AudioManager.instance.PlaySFX("OverloadWarning");
         yield return new WaitForSeconds(1.5f);
         if (errorPanel != null) errorPanel.SetActive(false);
 
@@ -136,7 +138,7 @@ public class Puzzle1_Manager : MonoBehaviour
 
     private void ReboundPuzzle()
     {
-        if (attemptCounter < 3) SetPuzzleInteractive(true);
+        if (attemptCounter <= 3) SetPuzzleInteractive(true);
     }
 
     public void SetPuzzleInteractive(bool status)
