@@ -5,11 +5,16 @@ using System.Collections.Generic;
 public class AudioManager : MonoBehaviour {
     public static AudioManager instance;
 
+    [Header("Global Data")]
+    public AudioData globalData;
+
     [SerializeField] private AudioSource bgmSource;
     [SerializeField] private AudioSource ambienceSource;
     [SerializeField] private AudioSource sfxSource;
 
     private Dictionary<string, AudioClip> currentSFXDict = new Dictionary<string, AudioClip>();
+    private Dictionary<string, AudioClip> globalSFXDict = new Dictionary<string, AudioClip>();
+    private Dictionary<string, AudioClip> actSFXDict = new Dictionary<string, AudioClip>();
 
     void Awake() {
         if (instance == null) {
@@ -17,6 +22,12 @@ public class AudioManager : MonoBehaviour {
             DontDestroyOnLoad(gameObject);
         } else {
             Destroy(gameObject);
+        }
+
+        if (globalData != null) {
+            foreach (var entry in globalData.sfxLibrary) {
+                globalSFXDict.Add(entry.name, entry.clip);
+            }
         }
     }
 

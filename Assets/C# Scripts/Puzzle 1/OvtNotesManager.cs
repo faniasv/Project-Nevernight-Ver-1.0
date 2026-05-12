@@ -44,6 +44,7 @@ public class OvtNotesManager : MonoBehaviour
 
     public void TriggerOVT(int attemptCount)
     {
+        if (AudioManager.instance != null) AudioManager.instance.PlaySFX("GlitchFatal");
         currentAttempt = attemptCount;
 
         if (puzzleCanvasGroup != null)
@@ -102,6 +103,7 @@ public class OvtNotesManager : MonoBehaviour
         newNote.transform.localRotation = Quaternion.Euler(0, 0, Random.Range(-20f, 20f));
         newNote.GetComponentInChildren<TextMeshProUGUI>().text = thoughtText;
         activeNotes.Add(newNote);
+        if (AudioManager.instance != null) AudioManager.instance.PlaySFX("StickyPop");
     }
 
     public void CloseThisNote(GameObject note)
@@ -149,6 +151,7 @@ public class OvtNotesManager : MonoBehaviour
     public void OnPhotoClicked()
     {
         StartCoroutine(TransitionRoutine());
+        if (AudioManager.instance != null) AudioManager.instance.PlaySFX("MouseClick");
     }
 
     private IEnumerator TransitionRoutine()

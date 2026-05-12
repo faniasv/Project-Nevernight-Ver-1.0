@@ -12,7 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 395783ce08eb00b47aa348f4dc4ebe75, type: 3}
   m_Name: Act1_Data
   m_EditorClassIdentifier: 
-  mainBGM: {fileID: 0}
+  mainBGM: {fileID: 8300000, guid: ca5e6cef30424ad43832d694de2aa31e, type: 3}
   puzzleBGM: {fileID: 0}
-  environmentalAmbience: {fileID: 0}
-  sfxLibrary: []
+  environmentalAmbience: {fileID: 8300000, guid: dff5d8ddc517ca8499fc160fdda3f883, type: 3}
+  sfxLibrary:
+  - name: MouseClick
+    clip: {fileID: 8300000, guid: f3e54c496ae48fc42a492b9ce843e2bb, type: 3}
+  - name: MouseDrop
+    clip: {fileID: 8300000, guid: cfba225576654374690e924a1970ccb5, type: 3}
+  - name: TaskSlider
+    clip: {fileID: 8300000, guid: f990dca02d92977489e6811634828234, type: 3}
+  - name: OverloadWarning
+    clip: {fileID: 8300000, guid: 7c0232461bb29f74da12b338b188051e, type: 3}
+  - name: GlitchFatal
+    clip: {fileID: 8300000, guid: 15b83d780961fa940aea19ce8bc9ee46, type: 3}
+  - name: StickyPop
+    clip: {fileID: 8300000, guid: 1adab13943cb372438baa50ff3f724ad, type: 3}

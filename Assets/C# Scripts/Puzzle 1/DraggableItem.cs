@@ -22,6 +22,7 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
     public void OnBeginDrag(PointerEventData eventData)
     {
+        if (AudioManager.instance != null) AudioManager.instance.PlaySFX("MouseClick");
         // 1. Simpan parent asal
         parentAfterDrag = transform.parent;
 
@@ -71,6 +72,7 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     {
         canvasGroup.alpha = 1f;
         canvasGroup.blocksRaycasts = true;
+        if (AudioManager.instance != null) AudioManager.instance.PlaySFX("MouseDrop");
 
         // INI BAGIAN PENTINGNYA:
         // Pindahkan item ke parent baru (Slot) yang sudah ditentukan DropZone tadi

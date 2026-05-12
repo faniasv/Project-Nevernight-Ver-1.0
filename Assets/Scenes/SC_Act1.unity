@@ -779,6 +779,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8187f8eed5314e549a3ae82fce47b3dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  globalData: {fileID: 11400000, guid: 42e8baf81da91654a867b260c6f904f7, type: 2}
   bgmSource: {fileID: 1370219551}
   ambienceSource: {fileID: 224553324}
   sfxSource: {fileID: 1087024035}
@@ -824,7 +825,7 @@ AudioSource:
   m_GameObject: {fileID: 539601173}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 4400158394423583034, guid: ae6aaa208585bdf4980ba62309159a74, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
@@ -4171,7 +4172,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.41509432, g: 0, b: 0, a: 0.78431374}
+  m_Color: {r: 0.8862745, g: 0.39607844, b: 0.5019608, a: 0.78431374}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -5651,7 +5652,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.5943396, g: 0, b: 0.017794603, a: 1}
+  m_Color: {r: 0.5754717, g: 0.14929691, b: 0.1959671, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
