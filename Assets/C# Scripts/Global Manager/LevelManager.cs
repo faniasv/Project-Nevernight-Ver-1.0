@@ -67,18 +67,32 @@ public class LevelManager : MonoBehaviour
 
     private IEnumerator FadeAndLoad(string sceneName)
     {
-        if (transitionPanel != null) transitionPanel.gameObject.SetActive(true);
+        if (transitionPanel != null) 
+        {
+            // PENTING: Paksa Alpha jadi 0 sebelum panel diaktifkan
+            transitionPanel.color = new Color(0, 0, 0, 0);
+            transitionPanel.gameObject.SetActive(true);
+        }
+
+        // Mulai Audio Fade Out
+        if (AudioManager.instance != null) {
+            StartCoroutine(AudioManager.instance.FadeBGM(0.3f, transitionTime));
+        }
 
         // 1. Mulai menutup tirai (Layar jadi hitam)
-        yield return StartCoroutine(Fade(1)); 
+        yield return StartCoroutine(Fade(2)); 
 
-        // 2. Perintah Unity untuk pindah scene
         SceneManager.LoadScene(sceneName);
 
-        // 3. Jeda sebentar (Opsional, agar transisi tidak terlalu terburu-buru)
-        yield return new WaitForSeconds(0.5f);
+        // Tunggu scene baru benar-benar siap dan ActAudioLoader di scene baru jalan
+        yield return new WaitForSeconds(0.3f); 
 
-        // 4. Mulai membuka tirai (Layar jadi terang)
+        // 2. Mulai Audio Fade In (Kembali ke volume 1 untuk lagu di scene baru)
+        if (AudioManager.instance != null) {
+            StartCoroutine(AudioManager.instance.FadeBGM(1.0f, transitionTime));
+        }
+
+        // 3. Mulai membuka tirai
         yield return StartCoroutine(Fade(0));
 
         if (transitionPanel != null) transitionPanel.gameObject.SetActive(false);
