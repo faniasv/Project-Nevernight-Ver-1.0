@@ -12,7 +12,6 @@ public class AudioManager : MonoBehaviour {
     [SerializeField] private AudioSource ambienceSource;
     [SerializeField] private AudioSource sfxSource;
 
-    private Dictionary<string, AudioClip> currentSFXDict = new Dictionary<string, AudioClip>();
     private Dictionary<string, AudioClip> globalSFXDict = new Dictionary<string, AudioClip>();
     private Dictionary<string, AudioClip> actSFXDict = new Dictionary<string, AudioClip>();
 
@@ -20,42 +19,46 @@ public class AudioManager : MonoBehaviour {
         if (instance == null) {
             instance = this;
             DontDestroyOnLoad(gameObject);
+            InitializeGlobalAudio(); // Load suara UI global di awal
         } else {
             Destroy(gameObject);
         }
+    }
 
+    private void InitializeGlobalAudio() {
         if (globalData != null) {
+            globalSFXDict.Clear();
             foreach (var entry in globalData.sfxLibrary) {
-                globalSFXDict.Add(entry.name, entry.clip);
+                if (entry.clip != null) globalSFXDict.Add(entry.name, entry.clip);
             }
         }
     }
 
     // Dipanggil setiap ganti Act/Scene
     public void LoadActAudio(AudioData data) {
-        if (data == null) {
-            Debug.LogWarning("Savilla, kamu lupa masukin file AudioData di scene ini!");
-            return;
-        }
+        if (data == null) return;
 
-        // Hanya ganti BGM kalau di AudioData baru ada isinya
-        if (data.mainBGM != null && bgmSource != null) {
-            PlayBGM(data.mainBGM);
-        }
+        // BGM & Ambience logic
+        if (data.mainBGM != null) PlayBGM(data.mainBGM);
+        if (data.environmentalAmbience != null) PlayAmbience(data.environmentalAmbience);
 
-        // Hanya ganti Ambience kalau ada isinya
-        if (data.environmentalAmbience != null && ambienceSource != null) {
-            PlayAmbience(data.environmentalAmbience);
+        // Update Kamus SFX khusus Act ini
+        actSFXDict.Clear();
+        foreach (var entry in data.sfxLibrary) {
+            if (entry.clip != null) actSFXDict.Add(entry.name, entry.clip);
         }
+    }
 
-        // Isi library SFX
-        currentSFXDict.Clear();
-        if (data.sfxLibrary != null) {
-            foreach (var entry in data.sfxLibrary) {
-                if (entry.clip != null) {
-                    currentSFXDict.Add(entry.name, entry.clip);
-                }
-            }
+    public void PlaySFX(string sfxName) {
+        // ALUR BACA: Cek Act dulu (Spesifik), kalau gak ada cek Global (Umum)
+        if (actSFXDict.ContainsKey(sfxName)) {
+            sfxSource.PlayOneShot(actSFXDict[sfxName]);
+        } 
+        else if (globalSFXDict.ContainsKey(sfxName)) {
+            sfxSource.PlayOneShot(globalSFXDict[sfxName]);
+        }
+        else {
+            Debug.LogWarning("Suara " + sfxName + " tidak ketemu di mana-mana!");
         }
     }
 
@@ -85,9 +88,4 @@ public class AudioManager : MonoBehaviour {
         ambienceSource.Play();
     }
 
-    public void PlaySFX(string sfxName) {
-        if (currentSFXDict.ContainsKey(sfxName)) {
-            sfxSource.PlayOneShot(currentSFXDict[sfxName]);
-        }
-    }
 }
