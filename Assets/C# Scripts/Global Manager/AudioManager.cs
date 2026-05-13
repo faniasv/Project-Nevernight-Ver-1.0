@@ -12,6 +12,13 @@ public class AudioManager : MonoBehaviour {
     [SerializeField] private AudioSource ambienceSource;
     [SerializeField] private AudioSource sfxSource;
 
+<<<<<<< HEAD
+=======
+<<<<<<< Updated upstream
+    private Dictionary<string, AudioClip> currentSFXDict = new Dictionary<string, AudioClip>();
+=======
+>>>>>>> Stashed changes
+>>>>>>> c242655a888cc42e9e2dd052b849dfe94bf90d4c
     private Dictionary<string, AudioClip> globalSFXDict = new Dictionary<string, AudioClip>();
     private Dictionary<string, AudioClip> actSFXDict = new Dictionary<string, AudioClip>();
 
@@ -33,6 +40,7 @@ public class AudioManager : MonoBehaviour {
             }
         }
     }
+    
 
     // Dipanggil setiap ganti Act/Scene
     public void LoadActAudio(AudioData data) {
@@ -87,5 +95,8 @@ public class AudioManager : MonoBehaviour {
         ambienceSource.clip = clip;
         ambienceSource.Play();
     }
+<<<<<<< HEAD
 
+=======
+>>>>>>> c242655a888cc42e9e2dd052b849dfe94bf90d4c
 }
