@@ -106,7 +106,7 @@ public class Puzzle1_Manager : MonoBehaviour
         {
             if (ovtManager != null) 
             {
-                ovtManager.TriggerOVT(attemptCounter);
+                yield return StartCoroutine(ovtManager.TriggerOVT(attemptCounter));
             }
         }
         else

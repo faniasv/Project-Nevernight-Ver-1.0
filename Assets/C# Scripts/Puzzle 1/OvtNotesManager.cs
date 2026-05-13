@@ -42,20 +42,17 @@ public class OvtNotesManager : MonoBehaviour
         if (photocardPanel != null) photocardPanel.SetActive(false);
     }
 
-    public void TriggerOVT(int attemptCount)
+    public IEnumerator TriggerOVT (int attemptCount)
     {
+        // 1. Muncul suara glitch
         if (AudioManager.instance != null) AudioManager.instance.PlaySFX("GlitchFatal");
         currentAttempt = attemptCount;
 
-        if (puzzleCanvasGroup != null)
-        {
-            puzzleManager.SetPuzzleInteractive(false);
-        }
-
-        // 1. MATIKAN SUARA DIALOG SECARA HALUS
+        // (Logika pembersihan panel tetap sama)
+        if (puzzleCanvasGroup != null) puzzleManager.SetPuzzleInteractive(false);
         if (dialogueAudio != null) dialogueAudio.Stop();
         
-        // 2. KOSONGKAN TEKS TANPA MEMATIKAN PANEL
+        // 2. Mengosongkan teks
         if (dialogueManager != null) 
         {
             // Kita hentikan coroutine pengetikan teks agar tidak lanjut muncul
@@ -67,6 +64,7 @@ public class OvtNotesManager : MonoBehaviour
             if (txt != null) txt.text = ""; 
         }
         
+        // 3. Jeda 1.5f sebelum notes muncul
         activeNotes.Clear();
         List<string> shuffledThoughts = new List<string>(thoughtPool);
         for (int i = 0; i < shuffledThoughts.Count; i++) {
@@ -79,9 +77,11 @@ public class OvtNotesManager : MonoBehaviour
         int notesToSpawn = 7 + (attemptCount - 3); 
         notesToSpawn = Mathf.Min(notesToSpawn, shuffledThoughts.Count); 
 
+        // 4. Munculkan notes satu per satu
         for (int i = 0; i < notesToSpawn; i++)
         {
             SpawnNote(shuffledThoughts[i]);
+            yield return new WaitForSeconds(0.5f);
         }
     }
 
