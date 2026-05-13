@@ -34,7 +34,8 @@ public class DialogueManager : MonoBehaviour
 
     // Internal State
     private Queue<DialogueLine> dialogueQueue = new Queue<DialogueLine>();
-    private bool isDialogueActive = false;
+    public static DialogueManager instance;
+    public bool isDialogueActive = false;
     private bool isTyping = false;
     private Coroutine typingCoroutine;
     private string currentFullLine;
@@ -45,14 +46,28 @@ public class DialogueManager : MonoBehaviour
 
     void Awake()
     {
-       if (dialogueAudioSource == null)
-       {
-            dialogueAudioSource = GetComponent<AudioSource>();
-            if (dialogueAudioSource == null) dialogueAudioSource = gameObject.AddComponent<AudioSource>();
-       }
+        // --- 1. LOGIKA SINGLETON ---
+        if (instance == null)
+        {
+            instance = this;
+            // DontDestroyOnLoad(gameObject); // Aktifkan kalau DialogueManager cuma ada 1 di seluruh game
+        }
+        else
+        {
+            Destroy(gameObject);
+            return; // Penting: Jangan lanjutin Awake kalau objek ini dihapus
+        }
 
-       if (avaExpressionImage != null) avaExpressionImage.gameObject.SetActive(false);
-       if (minionExpressionImage != null) minionExpressionImage.gameObject.SetActive(false);
+        // --- 2. LOGIKA ASLI KAMU (Setup Internal) ---
+        if (dialogueAudioSource == null)
+        {
+            dialogueAudioSource = GetComponent<AudioSource>();
+            if (dialogueAudioSource == null) 
+                dialogueAudioSource = gameObject.AddComponent<AudioSource>();
+        }
+
+        if (avaExpressionImage != null) avaExpressionImage.gameObject.SetActive(false);
+        if (minionExpressionImage != null) minionExpressionImage.gameObject.SetActive(false);
     }
 
     void Update()
