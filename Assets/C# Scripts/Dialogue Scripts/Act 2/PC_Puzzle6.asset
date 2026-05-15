@@ -1,0 +1,59 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 786c7bc14905c2f45b560b57ac49e2c3, type: 3}
+  m_Name: PC_Puzzle6
+  m_EditorClassIdentifier: 
+  keepPanelOpenAtEnd: 0
+  lines:
+  - characterName: AVA
+    lineText: Dulu meja ini selalu berisik
+    commands:
+    - type: 1
+      value: 
+      audioAsset: {fileID: 0}
+      spriteAsset: {fileID: 21300000, guid: 5009ad2fa8a51074991cdd49ad87d1ad, type: 3}
+  - characterName: AVA
+    lineText: "\u2026 bau masakan Ibu dan tawa Ayah selalu memenuhi ruangan"
+    commands: []
+  - characterName: AVA
+    lineText: "Sekarang aku makan dengan cepat, sambil menatap layar\u2026"
+    commands:
+    - type: 1
+      value: 
+      audioAsset: {fileID: 0}
+      spriteAsset: {fileID: 21300000, guid: 9bf943f71623c264885804e87a446f0f, type: 3}
+  - characterName: MINION
+    lineText: "Pasti terasa sangat sepi sekaligus dingin\u2026"
+    commands:
+    - type: 1
+      value: 
+      audioAsset: {fileID: 0}
+      spriteAsset: {fileID: 21300000, guid: 0ec1120d3dfe0db41920161ae21e9ca0, type: 3}
+  - characterName: AVA
+    lineText: "Aku hanya bisa makan makanan instan\u2026"
+    commands: []
+  - characterName: MINION
+    lineText: Karena kamu merasa harus selalu bergerak cepat ya?
+    commands: []
+  - characterName: AVA
+    lineText: "Iya\u2026"
+    commands: []
+  - characterName: AVA
+    lineText: "Aku hanya ingin bergerak sedikit lambat dan kembali merasakan kehangatan\u2026"
+    commands:
+    - type: 1
+      value: 
+      audioAsset: {fileID: 0}
+      spriteAsset: {fileID: 21300000, guid: 9bf943f71623c264885804e87a446f0f, type: 3}
+  - characterName: AVA
+    lineText: ...sehangat masakan Ibu
+    commands: []

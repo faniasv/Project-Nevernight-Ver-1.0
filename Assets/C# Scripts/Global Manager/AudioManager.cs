@@ -11,6 +11,7 @@ public class AudioManager : MonoBehaviour {
     [SerializeField] private AudioSource bgmSource;
     [SerializeField] private AudioSource ambienceSource;
     [SerializeField] private AudioSource sfxSource;
+    [SerializeField] private AudioSource dialogueSource;
 
     private Dictionary<string, AudioClip> globalSFXDict = new Dictionary<string, AudioClip>();
     private Dictionary<string, AudioClip> actSFXDict = new Dictionary<string, AudioClip>();
@@ -25,6 +26,23 @@ public class AudioManager : MonoBehaviour {
         }
     }
 
+    public void PlayTypingSFX(AudioClip clip, float volume) {
+        if (clip == null) return;
+        // Kita pakai sfxSource karena suara ketikan itu pendek dan berulang
+        sfxSource.PlayOneShot(clip, volume);
+    }
+
+    // --- FUNGSI UNTUK SUARA VOICE/DIALOG ---
+    public void PlayDialogueVoice(AudioClip clip) {
+        if (clip == null) return;
+        
+        // Hentikan suara dialog sebelumnya kalau masih bunyi (biar gak tumpang tindih)
+        if (dialogueSource.isPlaying) dialogueSource.Stop();
+        
+        dialogueSource.clip = clip;
+        dialogueSource.Play();
+    }
+
     private void InitializeGlobalAudio() {
         if (globalData != null) {
             globalSFXDict.Clear();
@@ -33,7 +51,6 @@ public class AudioManager : MonoBehaviour {
             }
         }
     }
-    
 
     // Dipanggil setiap ganti Act/Scene
     public void LoadActAudio(AudioData data) {

@@ -26,7 +26,6 @@ public class DialogueManager : MonoBehaviour
     [Header("Audio Settings")]
     [SerializeField] private AudioClip[] typingSounds;
     [Range(1, 5)][SerializeField] private int frequencyLevel = 2;
-    [SerializeField] private AudioSource dialogueAudioSource;
     [Range(0f, 1f)][SerializeField] private float typingVolume = 0.5f;
 
     [Header("Settings")]
@@ -56,14 +55,6 @@ public class DialogueManager : MonoBehaviour
         {
             Destroy(gameObject);
             return; // Penting: Jangan lanjutin Awake kalau objek ini dihapus
-        }
-
-        // --- 2. LOGIKA ASLI KAMU (Setup Internal) ---
-        if (dialogueAudioSource == null)
-        {
-            dialogueAudioSource = GetComponent<AudioSource>();
-            if (dialogueAudioSource == null) 
-                dialogueAudioSource = gameObject.AddComponent<AudioSource>();
         }
 
         if (avaExpressionImage != null) avaExpressionImage.gameObject.SetActive(false);
@@ -159,10 +150,14 @@ public class DialogueManager : MonoBehaviour
 
     private void PlayTypingSound()
     {
-        if (dialogueAudioSource != null && typingSounds != null && typingSounds.Length > 0)
+        if (typingSounds != null && typingSounds.Length > 0)
         {
             int index = UnityEngine.Random.Range(0, typingSounds.Length);
-            dialogueAudioSource.PlayOneShot(typingSounds[index], typingVolume);
+        
+            // SEKARANG PANGGIL AUDIO MANAGER
+            if (AudioManager.instance != null) {
+                AudioManager.instance.PlayTypingSFX(typingSounds[index], typingVolume);
+            }
         }
     }
 
@@ -172,7 +167,10 @@ public class DialogueManager : MonoBehaviour
         {
             if (cmd.type == CommandType.PlaySound && cmd.audioAsset != null)
             {
-                dialogueAudioSource.PlayOneShot(cmd.audioAsset);
+                // SEKARANG PANGGIL AUDIO MANAGER
+                if (AudioManager.instance != null) {
+                    AudioManager.instance.PlayDialogueVoice(cmd.audioAsset);
+                }
             }
             else if (cmd.type == CommandType.ChangeBackground && cmd.spriteAsset != null)
             {

@@ -14,67 +14,55 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   keepPanelOpenAtEnd: 0
   lines:
-  - characterName: MINION
-    lineText: Siapa anak kecil ini? Matanya bersinar... dia terlihat sangat berani
-    commands:
-    - type: 1
-      value: 
-      audioAsset: {fileID: 0}
-      spriteAsset: {fileID: 21300000, guid: 4763d71988e07334c8795c52a7975d43, type: 3}
   - characterName: AVA
-    lineText: Apakah itu aku?
-    commands: []
-  - characterName: AVA
-    lineText: Tangan mungil itu memegang crayon sebanyak itu
+    lineText: Aku ingat ini!
     commands:
     - type: 1
       value: 
       audioAsset: {fileID: 0}
       spriteAsset: {fileID: 21300000, guid: 9bf943f71623c264885804e87a446f0f, type: 3}
-  - characterName: MINION
-    lineText: Apakah hidupmu sekarang sesuai bayangan Ava saat berusia lima tahun?
+  - characterName: AVA
+    lineText: Aku bilang ke Ayah kalau aku ingin jadi astronot agar bisa melihat
+      bintang lebih dekat!
     commands: []
-  - characterName: AVA
-    lineText: "Yah, secara pencapaian\u2026"
-    commands:
-    - type: 1
-      value: 
-      audioAsset: {fileID: 0}
-      spriteAsset: {fileID: 21300000, guid: 3fe5a4721fd08fc47bba1165d066d955, type: 3}
-  - characterName: AVA
-    lineText: "\u2026 tapi aku merasa tidak berkarya, hanya mengejar target"
-    commands: []
-  - characterName: AVA
-    lineText: Ava versi umur lima tahun itu akan sedih mendengarnya
-    commands:
-    - type: 1
-      value: 
-      audioAsset: {fileID: 0}
-      spriteAsset: {fileID: 21300000, guid: 3fe5a4721fd08fc47bba1165d066d955, type: 3}
   - characterName: MINION
-    lineText: "Belum tentu\u2026"
+    lineText: Dan di mana bintang yang kamu tuju itu sekarang?
     commands:
     - type: 1
       value: 
       audioAsset: {fileID: 0}
       spriteAsset: {fileID: 21300000, guid: bff574c99f1bd214e808cef7cc10fa71, type: 3}
-  - characterName: MINION
-    lineText: Dia pasti bangga dengan dirimu sekarang
-    commands:
-    - type: 1
-      value: 
-      audioAsset: {fileID: 0}
-      spriteAsset: {fileID: 21300000, guid: bf7144a2c7d302f48a72d461613e455a, type: 3}
-  - characterName: MINION
-    lineText: Lalu, apa yang dirasakan oleh Ava saat ini?
+  - characterName: AVA
+    lineText: "Aku tidak tahu\u2026"
     commands: []
   - characterName: AVA
-    lineText: "Aku merasa aku merindukan bagian diriku\u2026"
+    lineText: Aku bahkan sulit percaya bahkan suatu hari aku akan melihat bintang
+      itu lagi
+    commands: []
+  - characterName: MINION
+    lineText: Kehidupan dewasa perlahan menelan mimpi kecilmu
     commands:
     - type: 1
       value: 
       audioAsset: {fileID: 0}
-      spriteAsset: {fileID: 21300000, guid: 5009ad2fa8a51074991cdd49ad87d1ad, type: 3}
+      spriteAsset: {fileID: 21300000, guid: 976c5a881d85b4743a5d31f74f6ec50c, type: 3}
+  - characterName: MINION
+    lineText: "\u2026 tapi tidak ada kata terlambat"
+    commands:
+    - type: 1
+      value: 
+      audioAsset: {fileID: 0}
+      spriteAsset: {fileID: 21300000, guid: f61bb87e9b9ec2e4fb1f598ec9d74239, type: 3}
+  - characterName: MINION
+    lineText: "untuk melihat bintang itu bersinar\u2026"
+    commands: []
+  - characterName: MINION
+    lineText: "yang ada di dalam dirimu\u2026"
+    commands: []
   - characterName: AVA
-    lineText: "\u2026 yang menatap karyanya dengan mata berbinar"
+    lineText: "Mungkin\u2026"
+    commands: []
+  - characterName: AVA
+    lineText: "\u2026 tanpa kusadari, bintang yang paling bersinar adalah diriku
+      sendiri"
     commands: []

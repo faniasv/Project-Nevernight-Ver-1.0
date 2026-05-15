@@ -585,7 +585,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: ef35b4b2654b5e54ab8934200ebab77d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d476d00c470b05248b82fa0163585fa4, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -617,7 +617,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   vividLayer: {fileID: 575145725}
   closeButton: {fileID: 551063368}
-  targetDistance: 5000
+  targetDistance: 1500
 --- !u!1001 &434834301
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1217,7 +1217,6 @@ GameObject:
   m_Component:
   - component: {fileID: 560390609}
   - component: {fileID: 560390607}
-  - component: {fileID: 560390608}
   m_Layer: 0
   m_Name: Dialogue_Manager
   m_TagString: Untagged
@@ -1247,107 +1246,10 @@ MonoBehaviour:
   avaColor: {r: 0.43921572, g: 0.5137255, b: 0.9607844, a: 1}
   typingSounds:
   - {fileID: 8300000, guid: a8d0c2ff4087f9e4390b47513160a074, type: 3}
-  frequencyLevel: 2
-  dialogueAudioSource: {fileID: 560390608}
-  typingVolume: 0.5
+  frequencyLevel: 3
+  typingVolume: 0.8
   charactersPerSecond: 15
   isDialogueActive: 0
---- !u!82 &560390608
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 560390606}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!4 &560390609
 Transform:
   m_ObjectHideFlags: 0
@@ -2617,7 +2519,8 @@ MonoBehaviour:
   vaseSelectionPanel: {fileID: 2137788955}
   reassemblePanel: {fileID: 1238920548}
   photocardPanel: {fileID: 294441704}
-  photocardImageDisplay: {fileID: 575145723}
+  blurImageDisplay: {fileID: 1510334018}
+  vividImageDisplay: {fileID: 575145723}
   visualRevealScript: {fileID: 294441708}
   puzzleSetParent: {fileID: 1201542849}
   dialogueManager: {fileID: 560390607}
@@ -2634,7 +2537,7 @@ MonoBehaviour:
     vasePuzzleSetPrefab: {fileID: 1258673889627680217, guid: a368043ca4964434c9c1aed459add3f3, type: 3}
     photocardSprite: {fileID: 21300000, guid: 030abf8c5e93b554ea281b4888b0943f, type: 3}
     ambienceName: Classroom
-    sfxName: DrawingCrayon
+    sfxName: Drawing-Crayon
     afterPuzzleDialogue: {fileID: 11400000, guid: c89e0507a5580304083c345f4480838b, type: 2}
   - puzzleName: Vase3
     vasePuzzleSetPrefab: {fileID: 1258673889627680217, guid: b5b44bafeb7df034896e36aad2a7529f, type: 3}
@@ -3245,6 +3148,134 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &1747410866
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1747410867}
+  - component: {fileID: 1747410868}
+  m_Layer: 0
+  m_Name: Dialogue
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1747410867
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1747410866}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1938905298}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &1747410868
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1747410866}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 4400158394423583034, guid: ae6aaa208585bdf4980ba62309159a74, type: 2}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1774835192
 GameObject:
   m_ObjectHideFlags: 0
@@ -3347,6 +3378,7 @@ Transform:
   - {fileID: 500479071}
   - {fileID: 445361084}
   - {fileID: 1695380692}
+  - {fileID: 1747410867}
   m_Father: {fileID: 1610193560}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1938905299
@@ -3377,6 +3409,7 @@ MonoBehaviour:
   bgmSource: {fileID: 500479072}
   ambienceSource: {fileID: 445361085}
   sfxSource: {fileID: 1695380693}
+  dialogueSource: {fileID: 1747410868}
 --- !u!1 &1973848138
 GameObject:
   m_ObjectHideFlags: 0

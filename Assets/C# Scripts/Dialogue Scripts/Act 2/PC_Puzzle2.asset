@@ -14,46 +14,67 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   keepPanelOpenAtEnd: 0
   lines:
+  - characterName: MINION
+    lineText: Siapa anak kecil ini? Matanya bersinar... dia terlihat sangat berani
+    commands:
+    - type: 1
+      value: 
+      audioAsset: {fileID: 0}
+      spriteAsset: {fileID: 21300000, guid: 4763d71988e07334c8795c52a7975d43, type: 3}
   - characterName: AVA
-    lineText: Dulu meja ini selalu berisik
+    lineText: Apakah itu aku?
+    commands: []
+  - characterName: AVA
+    lineText: Tangan mungil itu memegang crayon sebanyak itu
+    commands:
+    - type: 1
+      value: 
+      audioAsset: {fileID: 0}
+      spriteAsset: {fileID: 21300000, guid: 9bf943f71623c264885804e87a446f0f, type: 3}
+  - characterName: MINION
+    lineText: Apakah hidupmu sekarang sesuai bayangan Ava saat berusia lima tahun?
+    commands: []
+  - characterName: AVA
+    lineText: "Yah, secara pencapaian\u2026"
+    commands:
+    - type: 1
+      value: 
+      audioAsset: {fileID: 0}
+      spriteAsset: {fileID: 21300000, guid: 3fe5a4721fd08fc47bba1165d066d955, type: 3}
+  - characterName: AVA
+    lineText: "\u2026 tapi aku merasa tidak berkarya, hanya mengejar target"
+    commands: []
+  - characterName: AVA
+    lineText: Ava versi umur lima tahun itu akan sedih mendengarnya
+    commands:
+    - type: 1
+      value: 
+      audioAsset: {fileID: 0}
+      spriteAsset: {fileID: 21300000, guid: 3fe5a4721fd08fc47bba1165d066d955, type: 3}
+  - characterName: MINION
+    lineText: "Belum tentu\u2026"
+    commands:
+    - type: 1
+      value: 
+      audioAsset: {fileID: 0}
+      spriteAsset: {fileID: 21300000, guid: bff574c99f1bd214e808cef7cc10fa71, type: 3}
+  - characterName: MINION
+    lineText: Dia pasti bangga dengan dirimu sekarang
+    commands:
+    - type: 1
+      value: 
+      audioAsset: {fileID: 0}
+      spriteAsset: {fileID: 21300000, guid: bf7144a2c7d302f48a72d461613e455a, type: 3}
+  - characterName: MINION
+    lineText: Lalu, apa yang dirasakan oleh Ava saat ini?
+    commands: []
+  - characterName: AVA
+    lineText: "Aku merasa aku merindukan bagian diriku\u2026"
     commands:
     - type: 1
       value: 
       audioAsset: {fileID: 0}
       spriteAsset: {fileID: 21300000, guid: 5009ad2fa8a51074991cdd49ad87d1ad, type: 3}
   - characterName: AVA
-    lineText: "\u2026 bau masakan Ibu dan tawa Ayah selalu memenuhi ruangan"
-    commands: []
-  - characterName: AVA
-    lineText: "Sekarang aku makan dengan cepat, sambil menatap layar\u2026"
-    commands:
-    - type: 1
-      value: 
-      audioAsset: {fileID: 0}
-      spriteAsset: {fileID: 21300000, guid: 9bf943f71623c264885804e87a446f0f, type: 3}
-  - characterName: MINION
-    lineText: "Pasti terasa sangat sepi sekaligus dingin\u2026"
-    commands:
-    - type: 1
-      value: 
-      audioAsset: {fileID: 0}
-      spriteAsset: {fileID: 21300000, guid: 0ec1120d3dfe0db41920161ae21e9ca0, type: 3}
-  - characterName: AVA
-    lineText: "Aku hanya bisa makan makanan instan\u2026"
-    commands: []
-  - characterName: MINION
-    lineText: Karena kamu merasa harus selalu bergerak cepat ya?
-    commands: []
-  - characterName: AVA
-    lineText: "Iya\u2026"
-    commands: []
-  - characterName: AVA
-    lineText: "Aku hanya ingin bergerak sedikit lambat dan kembali merasakan kehangatan\u2026"
-    commands:
-    - type: 1
-      value: 
-      audioAsset: {fileID: 0}
-      spriteAsset: {fileID: 21300000, guid: 9bf943f71623c264885804e87a446f0f, type: 3}
-  - characterName: AVA
-    lineText: ...sehangat masakan Ibu
+    lineText: "\u2026 yang menatap karyanya dengan mata berbinar"
     commands: []
