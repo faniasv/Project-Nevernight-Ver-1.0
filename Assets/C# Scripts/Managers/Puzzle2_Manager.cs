@@ -27,7 +27,8 @@ public class Puzzle2_Manager : MonoBehaviour
     
     [Header("Panel Photocard")]
     [SerializeField] private GameObject photocardPanel; 
-    [SerializeField] private Image photocardImageDisplay; 
+    [SerializeField] private Image blurImageDisplay;  // Tarik Base_Img_Blur ke sini
+    [SerializeField] private Image vividImageDisplay; // Tarik Vivid_Img_Clear ke sini  
     [SerializeField] private PCVisualReveal visualRevealScript;
 
     [Header("Referensi Lain")]
@@ -89,9 +90,11 @@ public class Puzzle2_Manager : MonoBehaviour
         if (currentPuzzleSetInstance != null) Destroy(currentPuzzleSetInstance);
 
         // 2. Tampilkan Photocard (Vivid Layer 0 / Buram)
-        photocardImageDisplay.sprite = completedPuzzleData.photocardSprite;
-        photocardPanel.SetActive(true);
+        if(blurImageDisplay != null) blurImageDisplay.sprite = completedPuzzleData.photocardSprite;
+        if(vividImageDisplay != null) vividImageDisplay.sprite = completedPuzzleData.photocardSprite;
 
+        if(visualRevealScript != null) visualRevealScript.ResetReveal();
+        photocardPanel.SetActive(true);
         // 3. MULAI AUDIO & STANDBY
         // Di sini JANGAN panggil dialogueManager. Biarkan player gosok foto dulu.
         StartCoroutine(PhotocardAudioSequence(completedPuzzleData));
@@ -146,7 +149,7 @@ public class Puzzle2_Manager : MonoBehaviour
         yield return new WaitForSeconds(1.5f); // Jeda biar SFX crayon/star terdengar dulu
         
         dialogueManager.StartDialogue(currentActiveData.afterPuzzleDialogue, () => {
-            visualRevealScript.ShowCloseButton(); // Munculkan tombol close setelah dialog
+            if (visualRevealScript != null) visualRevealScript.ShowCloseButton(); // Munculkan tombol close setelah dialog
         });
     }
 }

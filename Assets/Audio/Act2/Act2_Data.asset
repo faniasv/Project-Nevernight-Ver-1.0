@@ -30,3 +30,7 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: b697235c60475284bb3cba0c72eb729a, type: 3}
   - name: FragmentDrop
     clip: {fileID: 8300000, guid: 15b633c57d701a449b2d4f39d7853154, type: 3}
+  - name: Laugh
+    clip: {fileID: 8300000, guid: f57f1af37f7de554d9fd044140a64cca, type: 3}
+  - name: Rub
+    clip: {fileID: 8300000, guid: dd0d4de0a34dd684582690fa65740e12, type: 3}

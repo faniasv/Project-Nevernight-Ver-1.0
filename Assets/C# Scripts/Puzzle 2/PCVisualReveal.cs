@@ -1,24 +1,24 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
-using System; // WAJIB ADA INI buat pake Action
+using System;
 
 public class PCVisualReveal : MonoBehaviour, IDragHandler
 {
     [Header("Referensi Objek")]
     public CanvasGroup vividLayer;
-    public RectTransform handle;
     public GameObject closeButton;
 
-    [Header("Batas Gerak")]
-    public float minX = -300f;
-    public float maxX = 300f;
-
-    // --- INI JEMBATANNYA ---
-    public Action OnRevealComplete; 
+    [Header("Settings Gosok")]
+    public float targetDistance = 5000f; // Total jarak geser mouse biar foto jadi 100% jelas
+    private float currentDistance = 0f;
     private bool isFinished = false;
 
-    void Start() {
+    public Action OnRevealComplete; 
+
+    public void ResetReveal() {
+        isFinished = false;
+        currentDistance = 0;
         if (vividLayer != null) vividLayer.alpha = 0;
         if (closeButton != null) closeButton.SetActive(false);
     }
@@ -26,22 +26,19 @@ public class PCVisualReveal : MonoBehaviour, IDragHandler
     public void OnDrag(PointerEventData eventData) {
         if (isFinished) return;
 
-        float currentX = handle.localPosition.x + eventData.delta.x;
-        currentX = Mathf.Clamp(currentX, minX, maxX);
-        handle.localPosition = new Vector3(currentX, handle.localPosition.y, 0);
+        // Akumulasi jarak mouse (delta.magnitude)
+        currentDistance += eventData.delta.magnitude;
 
-        float progres = (currentX - minX) / (maxX - minX);
-        if (vividLayer != null) vividLayer.alpha = progres;
+        float progres = currentDistance / targetDistance; 
+        if (vividLayer != null) vividLayer.alpha = Mathf.Clamp01(progres);
 
-        // Cek kalau udah mentok kanan (100%)
-        if (progres >= 0.98f && !isFinished) {
+        if (progres >= 1f && !isFinished) {
             isFinished = true;
-            // Panggil jembatan: "Manager, gue udah beres!"
+            // TERIAK KE MANAGER: "Gue udah beres digosok!"
             OnRevealComplete?.Invoke(); 
         }
     }
 
-    // Fungsi ini dipanggil sama Manager setelah dialog selesai
     public void ShowCloseButton() {
         if (closeButton != null) closeButton.SetActive(true);
     }
