@@ -617,6 +617,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   vividLayer: {fileID: 575145725}
   closeButton: {fileID: 551063368}
+  rubbingSFXName: Rub
+  distanceThreshold: 50
   targetDistance: 1500
 --- !u!1001 &434834301
 PrefabInstance:
@@ -2200,8 +2202,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -1.0881004, y: 0.455101}
-  m_SizeDelta: {x: 95.006, y: 9.7481}
+  m_AnchoredPosition: {x: -1.0881004, y: -2.1141}
+  m_SizeDelta: {x: 95.006, y: 10.2708}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1170316055
 GameObject:
