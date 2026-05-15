@@ -12,7 +12,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 395783ce08eb00b47aa348f4dc4ebe75, type: 3}
   m_Name: Act2_Data
   m_EditorClassIdentifier: 
-  mainBGM: {fileID: 0}
+  mainBGM: {fileID: 8300000, guid: e4902a0da210f9749a479919f3ad8dea, type: 3}
   puzzleBGM: {fileID: 0}
-  environmentalAmbience: {fileID: 0}
-  sfxLibrary: []
+  environmentalAmbience: {fileID: 8300000, guid: a75fbd753a4a3fb4189836a92380fd76, type: 3}
+  sfxLibrary:
+  - name: AvaSighs
+    clip: {fileID: 8300000, guid: f3914ddd73aa37a4e957c1fda9446eb7, type: 3}
+  - name: Drawing-Crayon
+    clip: {fileID: 8300000, guid: 4eaebb9a3b50ac44fb2f94c9db86bbde, type: 3}
+  - name: Star
+    clip: {fileID: 8300000, guid: b697235c60475284bb3cba0c72eb729a, type: 3}
+  - name: FragmentDrop
+    clip: {fileID: 8300000, guid: 15b633c57d701a449b2d4f39d7853154, type: 3}
+  - name: Classroom
+    clip: {fileID: 8300000, guid: b35312422dd1d054283fa3109b8fe6fa, type: 3}
+  - name: Playground
+    clip: {fileID: 8300000, guid: b2efc501c984aeb4ea4e0266b9d5a84b, type: 3}
+  - name: Space
+    clip: {fileID: 8300000, guid: 3d1c1bd19e41ec346b7ebdb7b89eb191, type: 3}

@@ -14,6 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   keepPanelOpenAtEnd: 0
   lines:
+  - characterName: Ava
+    lineText: ....
+    commands:
+    - type: 1
+      value: 
+      audioAsset: {fileID: 0}
+      spriteAsset: {fileID: 21300000, guid: fefa11c2cd852f144ab308e9c8a7d412, type: 3}
   - characterName: MINION
     lineText: Hai!
     commands:
@@ -27,21 +34,21 @@ MonoBehaviour:
     - type: 1
       value: 
       audioAsset: {fileID: 0}
-      spriteAsset: {fileID: 21300000, guid: f28c52487a794dc42a6e477e87e5fa96, type: 3}
+      spriteAsset: {fileID: 21300000, guid: 9bf943f71623c264885804e87a446f0f, type: 3}
   - characterName: MINION
     lineText: Hei, kamu nggak apa-apa?
     commands:
     - type: 1
       value: 
       audioAsset: {fileID: 0}
-      spriteAsset: {fileID: 21300000, guid: 976c5a881d85b4743a5d31f74f6ec50c, type: 3}
+      spriteAsset: {fileID: 21300000, guid: bff574c99f1bd214e808cef7cc10fa71, type: 3}
   - characterName: AVA
     lineText: Iya... sepertinya begitu
     commands:
     - type: 1
       value: 
       audioAsset: {fileID: 0}
-      spriteAsset: {fileID: 21300000, guid: 93d40e3a07f297444827a05118da7db5, type: 3}
+      spriteAsset: {fileID: 21300000, guid: 3fe5a4721fd08fc47bba1165d066d955, type: 3}
   - characterName: MINION
     lineText: Kenapa 'sepertinya'?
     commands:
@@ -58,19 +65,27 @@ MonoBehaviour:
       audioAsset: {fileID: 0}
       spriteAsset: {fileID: 21300000, guid: 3fe5a4721fd08fc47bba1165d066d955, type: 3}
   - characterName: MINION
-    lineText: Itu normal banget, kok. Rasanya gimana pas kamu gagal?
+    lineText: Itu normal banget, kok. Rasanya gimana pas kamu melakukan kesalahan?
     commands: []
   - characterName: AVA
     lineText: "Malu\u2026."
-    commands: []
+    commands:
+    - type: 1
+      value: 
+      audioAsset: {fileID: 0}
+      spriteAsset: {fileID: 21300000, guid: 9bf943f71623c264885804e87a446f0f, type: 3}
   - characterName: AVA
     lineText: Frustrasi... dan sedih juga
     commands: []
   - characterName: MINION
-    lineText: Berarti rasanya cukup berat ya buat kamu?
-    commands: []
+    lineText: Rasanya cukup berat ya buat kamu?
+    commands:
+    - type: 1
+      value: 
+      audioAsset: {fileID: 0}
+      spriteAsset: {fileID: 21300000, guid: 0ec1120d3dfe0db41920161ae21e9ca0, type: 3}
   - characterName: AVA
-    lineText: Mungkin, tapi aku harus sembunyiin itu semua kegiatanku berjalan dengan
+    lineText: Mungkin, tapi aku harus sembunyiin itu agar kegiatanku berjalan dengan
       baik
     commands:
     - type: 1
@@ -79,7 +94,11 @@ MonoBehaviour:
       spriteAsset: {fileID: 21300000, guid: 5009ad2fa8a51074991cdd49ad87d1ad, type: 3}
   - characterName: MINION
     lineText: Pernah nyoba buat... lepasin aja?
-    commands: []
+    commands:
+    - type: 1
+      value: 
+      audioAsset: {fileID: 0}
+      spriteAsset: {fileID: 21300000, guid: f61bb87e9b9ec2e4fb1f598ec9d74239, type: 3}
   - characterName: AVA
     lineText: Belum pernah, aku tidak tahu bagaimana caranya
     commands: []
@@ -89,9 +108,9 @@ MonoBehaviour:
     - type: 1
       value: 
       audioAsset: {fileID: 0}
-      spriteAsset: {fileID: 21300000, guid: 0ec1120d3dfe0db41920161ae21e9ca0, type: 3}
+      spriteAsset: {fileID: 21300000, guid: bff574c99f1bd214e808cef7cc10fa71, type: 3}
   - characterName: AVA
-    lineText: Tidak perlu, aku hanya kembali menyusun tugas di papan
+    lineText: Tidak perlu, aku hanya perlu kembali menyusun tugas itu
     commands:
     - type: 1
       value: 
@@ -100,16 +119,28 @@ MonoBehaviour:
   - characterName: MINION
     lineText: Maaf, kamu tidak bisa kembali. Saat aku membuka toko, kamu udah ada
       di sini
-    commands: []
+    commands:
+    - type: 1
+      value: 
+      audioAsset: {fileID: 0}
+      spriteAsset: {fileID: 21300000, guid: 53d12dd6ff2623a43b3c68313c4c5f7a, type: 3}
   - characterName: AVA
     lineText: Oh... ini toko?
-    commands: []
+    commands:
+    - type: 1
+      value: 
+      audioAsset: {fileID: 0}
+      spriteAsset: {fileID: 21300000, guid: 5009ad2fa8a51074991cdd49ad87d1ad, type: 3}
   - characterName: AVA
     lineText: Tapi vas di sini retak dan tidak berwarna
     commands: []
   - characterName: MINION
     lineText: Haha, mirip seperti perasaanmu kan?
-    commands: []
+    commands:
+    - type: 1
+      value: 
+      audioAsset: {fileID: 0}
+      spriteAsset: {fileID: 21300000, guid: 53d12dd6ff2623a43b3c68313c4c5f7a, type: 3}
   - characterName: AVA
     lineText: Apa maksudmu?
     commands:
@@ -135,5 +166,10 @@ MonoBehaviour:
       audioAsset: {fileID: 0}
       spriteAsset: {fileID: 21300000, guid: 93d40e3a07f297444827a05118da7db5, type: 3}
   - characterName: MINION
-    lineText: Karena di dalamnya, mungkin ada sesuatu yang pernah kamu tinggalin
-    commands: []
+    lineText: Mungkin di dalamnya ada sesuatu yang pernah kamu pendam dan berusaha
+      lupakan
+    commands:
+    - type: 1
+      value: 
+      audioAsset: {fileID: 0}
+      spriteAsset: {fileID: 21300000, guid: 4763d71988e07334c8795c52a7975d43, type: 3}

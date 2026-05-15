@@ -27,9 +27,9 @@ public class Act2_Manager : MonoBehaviour
 // Warna menyala (Putih bersih, Alpha 1)
     public Color completedColor = new Color(1f, 1f, 1f, 1f); 
 // Warna pudar/redup (Abu-abu gelap, Alpha tetep 1 biar gak transparan)
-    public Color uncompletedColor = new Color(0.25f, 0.25f, 0.25f, 1f);     
+    public Color uncompletedColor = new Color(0.5f, 0.5f, 0.5f, 0.5f);     
     private int completedVases = 0;
-    private int totalVases = 5; 
+    private int totalVases = 3; 
 
     private void Start()
     {
