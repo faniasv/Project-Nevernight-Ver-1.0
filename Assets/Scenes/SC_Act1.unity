@@ -255,7 +255,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 7c702baf18ea4e149bdc5dbea80caf04, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -413,7 +413,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2288637220195344623, guid: 6dafc4705e3cf8b4c91bd99a4521c797, type: 3}
       propertyPath: m_SizeDelta.y
-      value: -1029.6232
+      value: -1000
       objectReference: {fileID: 0}
     - target: {fileID: 2288637220195344623, guid: 6dafc4705e3cf8b4c91bd99a4521c797, type: 3}
       propertyPath: m_LocalPosition.x
@@ -449,7 +449,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2288637220195344623, guid: 6dafc4705e3cf8b4c91bd99a4521c797, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -401
+      value: -415.81
       objectReference: {fileID: 0}
     - target: {fileID: 2288637220195344623, guid: 6dafc4705e3cf8b4c91bd99a4521c797, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -511,6 +511,10 @@ PrefabInstance:
       propertyPath: m_sharedMaterial
       value: 
       objectReference: {fileID: -8660980107827699064, guid: 3bdfae478b640c44997a3c0f19958ebc, type: 2}
+    - target: {fileID: 5982898269963033705, guid: 6dafc4705e3cf8b4c91bd99a4521c797, type: 3}
+      propertyPath: m_enableAutoSizing
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5982898269963033705, guid: 6dafc4705e3cf8b4c91bd99a4521c797, type: 3}
       propertyPath: m_hasFontAssetChanged
       value: 0
@@ -1049,7 +1053,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 7c702baf18ea4e149bdc5dbea80caf04, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5209,6 +5213,10 @@ PrefabInstance:
       propertyPath: m_sharedMaterial
       value: 
       objectReference: {fileID: -8660980107827699064, guid: 3bdfae478b640c44997a3c0f19958ebc, type: 2}
+    - target: {fileID: 5982898269963033705, guid: 6dafc4705e3cf8b4c91bd99a4521c797, type: 3}
+      propertyPath: m_enableAutoSizing
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5982898269963033705, guid: 6dafc4705e3cf8b4c91bd99a4521c797, type: 3}
       propertyPath: m_hasFontAssetChanged
       value: 0

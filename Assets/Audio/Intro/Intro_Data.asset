@@ -13,6 +13,18 @@ MonoBehaviour:
   m_Name: Intro_Data
   m_EditorClassIdentifier: 
   mainBGM: {fileID: 8300000, guid: 14f3f41e676b2a0419c876a35d253413, type: 3}
-  puzzleBGM: {fileID: 0}
   environmentalAmbience: {fileID: 0}
-  sfxLibrary: []
+  extraAmbienceLibrary:
+  - name: City
+    clip: {fileID: 8300000, guid: 0278907db288e5e4bb2e588f266067d9, type: 3}
+  - name: Mouse
+    clip: {fileID: 8300000, guid: 7d19e0e0d4320e2478ace783330ba311, type: 3}
+  - name: Cultery
+    clip: {fileID: 8300000, guid: 04b708ab15676a042a95acfd9744f3f0, type: 3}
+  sfxLibrary:
+  - name: City
+    clip: {fileID: 8300000, guid: 0278907db288e5e4bb2e588f266067d9, type: 3}
+  - name: Mouse
+    clip: {fileID: 8300000, guid: 7d19e0e0d4320e2478ace783330ba311, type: 3}
+  - name: Cultery
+    clip: {fileID: 8300000, guid: 04b708ab15676a042a95acfd9744f3f0, type: 3}
