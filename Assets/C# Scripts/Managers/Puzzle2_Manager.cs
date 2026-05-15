@@ -11,6 +11,10 @@ public class PuzzleData
     public GameObject vasePuzzleSetPrefab; 
     public Sprite photocardSprite; // Balik ke Sprite biasa
 
+    [Header("Data Audio")]
+    public string ambienceName;
+    public string sfxName;
+
     [Header("Data Narasi")]
     public DialogueData afterPuzzleDialogue; // Slot Dialog SETELAH puzzle
 }
@@ -24,6 +28,7 @@ public class Puzzle2_Manager : MonoBehaviour
     [Header("Panel Photocard")]
     [SerializeField] private GameObject photocardPanel; 
     [SerializeField] private Image photocardImageDisplay; 
+    [SerializeField] private PCVisualReveal visualRevealScript;
 
     [Header("Referensi Lain")]
     [SerializeField] private Transform puzzleSetParent; 
@@ -37,6 +42,12 @@ public class Puzzle2_Manager : MonoBehaviour
     private PuzzleData currentActiveData;
     private int currentActiveIndex;
 
+    void Start()
+    {
+        if (visualRevealScript != null) {
+            visualRevealScript.OnRevealComplete = HandleRevealAudio;
+        }
+    }
     // 1. SAAT VAS DIPILIH
     public void OnVaseSelected(int puzzleIndex)
     {
@@ -47,7 +58,6 @@ public class Puzzle2_Manager : MonoBehaviour
 
         vaseSelectionPanel.SetActive(false);
 
-        // 4. SET KE PUZZLE (Pindah ke pojok & Shaking)
         if(minion != null) minion.ChangeState(Minion_Act2.MinionState.Puzzle);
 
         StartCoroutine(StartPuzzle(currentActiveData));
@@ -72,38 +82,29 @@ public class Puzzle2_Manager : MonoBehaviour
     
     public void HandlePuzzleCompletion(PuzzleData completedPuzzleData)
     {
+        currentActiveData = completedPuzzleData;
+    
         // 1. Matikan panel puzzle
         reassemblePanel.SetActive(false);
         if (currentPuzzleSetInstance != null) Destroy(currentPuzzleSetInstance);
 
-        // 2. Tampilkan Photocard
+        // 2. Tampilkan Photocard (Vivid Layer 0 / Buram)
         photocardImageDisplay.sprite = completedPuzzleData.photocardSprite;
         photocardPanel.SetActive(true);
 
-        // 3. Jalankan Dialog
-        dialogueManager.StartDialogue(completedPuzzleData.afterPuzzleDialogue, () => {
-        
-            // --- SETELAH DIALOG HABIS ---
-            photocardPanel.SetActive(false); // Tutup photocard
-        
-            // Lapor ke Act2_Manager (Sutradara)
-            if (act2Manager != null) {
-                act2Manager.ReportVaseCompleted(currentActiveIndex);
-            }
-        });
+        // 3. MULAI AUDIO & STANDBY
+        // Di sini JANGAN panggil dialogueManager. Biarkan player gosok foto dulu.
+        StartCoroutine(PhotocardAudioSequence(completedPuzzleData));
     }
 
-    // 3. SAAT TOMBOL CLOSE DI PHOTOCARD DIKLIK
+// SAAT TOMBOL CLOSE DI PHOTOCARD DIKLIK
     public void OnPhotocardClosed()
     {
         photocardPanel.SetActive(false);
 
-        if (currentActiveData.afterPuzzleDialogue != null)
-        {
-            dialogueManager.StartDialogue(currentActiveData.afterPuzzleDialogue, () => {
-                // LAPOR KE SUTRADARA BESAR
-                act2Manager.ReportVaseCompleted(currentActiveIndex);
-            });
+        // Lapor ke Act2_Manager (Sutradara) bahwa vas ini sudah beres
+        if (act2Manager != null) {
+            act2Manager.ReportVaseCompleted(currentActiveIndex);
         }
     }
 
@@ -112,5 +113,40 @@ public class Puzzle2_Manager : MonoBehaviour
         vaseSelectionPanel.SetActive(true);
         reassemblePanel.SetActive(false);
         photocardPanel.SetActive(false);
+    }
+
+    private IEnumerator PhotocardAudioSequence(PuzzleData data)
+    {
+        // 1. Jeda sebentar setelah puzzle beres
+        yield return new WaitForSeconds(1.0f);
+        
+        // 2. Play Ava Sighs (Suara dasar lelah)
+        AudioManager.instance.PlaySFX("AvaSighs");
+
+        // 3. Play Ambience sesuai lokasi vas (Playground/Classroom/Space)
+        // Kita gunakan fungsi PlayExtraAmbience yang kita buat kemarin
+        AudioManager.instance.PlayExtraAmbience(data.ambienceName);
+        
+        // Sekarang script berhenti di sini, menunggu player narik handle visual...
+    }
+
+    private void HandleRevealAudio()
+    {
+        // 4. Play SFX spesifik (Crayon/Star) saat foto sudah terlihat jelas
+        if (currentActiveData != null) {
+            AudioManager.instance.PlaySFX(currentActiveData.sfxName);
+        }
+
+        // 5. Jalankan dialog setelah reveal beres
+        StartCoroutine(WaitAndStartDialogue());
+    }
+
+    private IEnumerator WaitAndStartDialogue()
+    {
+        yield return new WaitForSeconds(1.5f); // Jeda biar SFX crayon/star terdengar dulu
+        
+        dialogueManager.StartDialogue(currentActiveData.afterPuzzleDialogue, () => {
+            visualRevealScript.ShowCloseButton(); // Munculkan tombol close setelah dialog
+        });
     }
 }

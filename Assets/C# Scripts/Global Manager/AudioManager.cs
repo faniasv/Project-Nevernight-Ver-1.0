@@ -104,4 +104,42 @@ public class AudioManager : MonoBehaviour {
         ambienceSource.clip = clip;
         ambienceSource.Play();
     }
+
+    // Tambahkan fungsi ini di AudioManager.cs
+    public void PlayExtraAmbience(string name, bool fade = true)
+    {
+        if (actSFXDict.ContainsKey(name))
+        {
+            AudioClip clip = actSFXDict[name];
+            if (ambienceSource.clip == clip) return; // Biar gak restart kalau klipnya sama
+
+            if (fade) StartCoroutine(FadeAmbience(clip, 1.5f));
+            else
+            {
+                ambienceSource.clip = clip;
+                ambienceSource.Play();
+            }
+        }
+    }
+
+    private IEnumerator FadeAmbience(AudioClip newClip, float duration)
+    {
+        float startVol = ambienceSource.volume;
+        // Fade Out sebentar
+        for (float t = 0; t < 0.5f; t += Time.deltaTime)
+        {
+            ambienceSource.volume = Mathf.Lerp(startVol, 0, t / 0.5f);
+            yield return null;
+        }
+
+        ambienceSource.clip = newClip;
+        ambienceSource.Play();
+
+        // Fade In ke volume target (misal 0.6 agar tidak nabrak BGM)
+        for (float t = 0; t < duration; t += Time.deltaTime)
+        {
+            ambienceSource.volume = Mathf.Lerp(0, 0.6f, t / duration);
+            yield return null;
+        }
+    }
 }

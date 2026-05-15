@@ -35,6 +35,7 @@ public class FragmentTarget : MonoBehaviour, IDropHandler // Hanya perlu mendete
             // Cek 1: Apakah ID-nya cocok?
             if (fragment.fragmentID == correctFragmentID)
             {
+                if (AudioManager.instance != null) AudioManager.instance.PlaySFX("FragmentDrop");
                 Debug.Log("ID Kepingan COCOK.");
                 // Cek 2: Apakah rotasinya cocok?
                 float fragmentRotation = fragment.transform.eulerAngles.z;
