@@ -39,14 +39,30 @@ public class AudioManager : MonoBehaviour {
     public void LoadActAudio(AudioData data) {
         if (data == null) return;
 
-        // BGM & Ambience logic
+        // BGM & Primary Ambience logic
         if (data.mainBGM != null) PlayBGM(data.mainBGM);
         if (data.environmentalAmbience != null) PlayAmbience(data.environmentalAmbience);
 
-        // Update Kamus SFX khusus Act ini
+        // Bersihkan kamus lama
         actSFXDict.Clear();
-        foreach (var entry in data.sfxLibrary) {
-            if (entry.clip != null) actSFXDict.Add(entry.name, entry.clip);
+
+        // 1. Masukkan daftar SFX biasa
+        if (data.sfxLibrary != null) {
+            foreach (var entry in data.sfxLibrary) {
+                // Pengaman: Jangan sampai ada nama ganda yang bikin error
+                if (entry.clip != null && !actSFXDict.ContainsKey(entry.name)) {
+                    actSFXDict.Add(entry.name, entry.clip);
+                }
+            }
+        }
+
+        // 2. Masukkan daftar Extra Ambience ke kamus yang sama!
+        if (data.extraAmbienceLibrary != null) {
+            foreach (var entry in data.extraAmbienceLibrary) {
+                if (entry.clip != null && !actSFXDict.ContainsKey(entry.name)) {
+                    actSFXDict.Add(entry.name, entry.clip);
+                }
+            }
         }
     }
 
