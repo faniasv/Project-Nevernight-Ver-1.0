@@ -15,6 +15,9 @@ public class QuestionPackage
 
 public class Puzzle3_Manager : MonoBehaviour
 {
+    [Header("Referensi Utama Act 3")]
+    private Act3_Manager act3MainManager; // Otomatis dicari saat Start
+
     [Header("Konfigurasi Paket Soal")]
     public List<QuestionPackage> allPackages;
     
@@ -28,115 +31,103 @@ public class Puzzle3_Manager : MonoBehaviour
     public RectTransform spawnPoint;
     public RectTransform endPoint;
 
+    [Header("Referensi Spawner Baru")]
+    public BubbleSpawner bubbleSpawner;
+
     [Header("Pengaturan Gameplay")]
     public float laneDistance = 120f;
     public float scrollSpeed = 250f;
     public float spawnInterval = 1.2f;
-    public int targetScorePerLevel = 5;
 
-    private bool isFrozen = false;
+    [Header("Referensi Ending Chat di Tunnel (Internal Exit Condition)")]
+    public GameObject chatEndingPrefab; 
+    public List<RectTransform> chatPositions; // 5 Titik RectTransform di dalam tunnel UI
+
+    private bool isFrozen = true; // Set true di awal agar tidak spawn sebelum opening selesai
+    private bool isGameEnded = false;
     private int currentPackageIndex = 0;
-    private int currentScore = 0;
     private QuestionPackage currentPackage;
+    private List<bool> spawnPool = new List<bool>();
+
+    public bool IsSystemFrozen => isFrozen;
+
+    private List<string> endingDialogues = new List<string>()
+    {
+        "Ternyata... selama ini aku cuma takut.",
+        "Takut kalau berhenti sebentar saja, aku akan tertinggal jauh.",
+        "Tapi tubuhku sudah tidak bisa bohong lagi.",
+        "Maaf ya, sudah memaksamu terlalu keras.",
+        "Let's rest first."
+    };
 
     void Start()
     {
-        // 1. Inisialisasi Data Awal
+        // Cari script sutradara besarnya di scene
+        act3MainManager = FindObjectOfType<Act3_Manager>();
+        SetTrafficLight(true);
+    }
+
+    // Fungsi ini dipanggil dari Act3_Manager setelah opening selesai
+    public void StartPuzzleGameplay()
+    {
+        isFrozen = false;
         if (allPackages != null && allPackages.Count > 0)
         {
             LoadPackage(0);
         }
     
-        // 2. Mulai Munculkan Gelembung (Pake Coroutine biar lebih stabil)
-        StartCoroutine(SpawnLoop());
-        
-        SetTrafficLight(true);
+        // Perintahkan script spawner terpisah untuk mulai bekerja!
+        if (bubbleSpawner != null) bubbleSpawner.StartSpawning();
     }
 
     public void LoadPackage(int index)
     {
         if (index >= allPackages.Count)
         {
-            WinGame();
+            // Jika menang, matikan mesin spawner dulu
+            if (bubbleSpawner != null) bubbleSpawner.StopSpawning();
+        
+            StartCoroutine(PlayTunnelChatSequence());
             return;
         }
 
         currentPackageIndex = index;
         currentPackage = allPackages[index];
         boardText.text = currentPackage.questionText;
-        currentScore = 0;
+
+        if (bubbleSpawner != null) bubbleSpawner.GenerateSpawnPool();
     }
 
-    IEnumerator SpawnLoop()
+    
+    void GenerateSpawnPool()
     {
-        while (true)
+        spawnPool.Clear();
+        spawnPool.Add(true); // 1 Jujur
+        for (int i = 0; i < 5; i++) spawnPool.Add(false); // 5 Defensif
+
+        for (int i = 0; i < spawnPool.Count; i++)
         {
-            // Hanya spawn kalau sistem tidak sedang beku
-            if (!isFrozen)
-            {
-                SpawnBubble();
-            }
-            yield return new WaitForSeconds(spawnInterval);
-        }
-    }
-
-    public void SpawnBubble()
-    {
-        // Validasi: Berhenti di sini kalau ada referensi yang kosong
-        if (bubblePrefab == null || spawnPoint == null || currentPackage == null) return;
-
-        // 1. Munculkan gelembung
-        GameObject go = Instantiate(bubblePrefab, spawnPoint.parent);
-        go.transform.localScale = Vector3.one; // Reset skala biar gak gepeng
-
-        // 2. Atur Posisi & Jalur (Lane)
-        int randomLane = Random.Range(-1, 2); 
-        float yOffset = randomLane * laneDistance;
-        Vector3 startPos = spawnPoint.localPosition;
-        startPos.y += yOffset;
-        go.transform.localPosition = startPos;
-
-        // 3. Tentukan Isi (Jujur vs Bohong)
-        bool isGood = Random.value > 0.5f;
-        string chosenText = isGood ? 
-            currentPackage.goodAnswers[Random.Range(0, currentPackage.goodAnswers.Count)] : 
-            currentPackage.badAnswers[Random.Range(0, currentPackage.badAnswers.Count)];
-
-        // 4. Pilih Gambar Balon Acak
-        Sprite chosenSprite = bubbleSprites[Random.Range(0, bubbleSprites.Count)];
-
-        // 5. Kirim data ke script balon (PENTING: Gak ada lagi NotImplementedException di sini)
-        ThoughtBubble script = go.GetComponent<ThoughtBubble>();
-        if (script != null)
-        {
-            script.Setup(chosenSprite, chosenText, isGood, scrollSpeed, endPoint.localPosition.x);
+            bool temp = spawnPool[i];
+            int randomIndex = Random.Range(i, spawnPool.Count);
+            spawnPool[i] = spawnPool[randomIndex];
+            spawnPool[randomIndex] = temp;
         }
     }
 
     public void OnBubbleClicked(bool isCorrect)
     {
-        if (isFrozen) return;
+        if (isFrozen || isGameEnded) return;
 
-        if (isCorrect)
-        {
-            currentScore++;
-            if (currentScore >= targetScorePerLevel)
-            {
-                NextLevel();
-            }
-        }
-        else
-        {
-            StartCoroutine(FreezeSystem());
-        }
+        if (isCorrect) NextLevel();
+        else StartCoroutine(FreezeSystem());
     }
 
     IEnumerator FreezeSystem()
     {
         isFrozen = true;
-        SetTrafficLight(false); // Lampu Merah
-        yield return new WaitForSeconds(2f); // Durasi Freeze
-        SetTrafficLight(true); // Lampu Hijau
+        SetTrafficLight(false); // Merah
+        yield return new WaitForSeconds(3f); 
+        SetTrafficLight(true); // Hijau
         isFrozen = false;
     }
 
@@ -152,10 +143,45 @@ public class Puzzle3_Manager : MonoBehaviour
         LoadPackage(currentPackageIndex);
     }
 
-    void WinGame()
+    // URUTAN PERCAKAPAN TUNNEL (EXIT CONDITION PUZZLE)
+    IEnumerator PlayTunnelChatSequence()
     {
+        isGameEnded = true;
         isFrozen = true;
-        boardText.text = "Selesai. Ava mulai tenang.";
-        Debug.Log("Act 3 Clear!");
+        boardText.text = ""; // Bersihkan papan kuning
+
+        // Bersihkan balon gameplay yang tersisa
+        ThoughtBubble[] activeBubbles = FindObjectsOfType<ThoughtBubble>();
+        foreach (ThoughtBubble b in activeBubbles) Destroy(b.gameObject);
+
+        yield return new WaitForSeconds(1f);
+
+        // Munculkan chat satu per satu di dalam terowongan
+        for (int i = 0; i < endingDialogues.Count; i++)
+        {
+            if (i >= chatPositions.Count || chatEndingPrefab == null) break;
+
+            GameObject chatGo = Instantiate(chatEndingPrefab, spawnPoint.parent);
+            chatGo.transform.localScale = Vector3.one;
+            chatGo.transform.localPosition = chatPositions[i].localPosition;
+
+            TextMeshProUGUI chatText = chatGo.GetComponentInChildren<TextMeshProUGUI>();
+            if (chatText != null) chatText.text = endingDialogues[i];
+
+            yield return new WaitForSeconds(2.5f); 
+        }
+
+        yield return new WaitForSeconds(1.5f); // Beri waktu baca kalimat terakhir "Let's rest first"
+
+        // SELESAI! Lapor ke Act3_Manager kalau puzzle dan chat tunnel sudah tuntas
+        if (act3MainManager != null)
+        {
+            act3MainManager.OnPuzzle3Complete();
+        }
+    }
+    
+    public QuestionPackage GetCurrentPackage()
+    {
+        return currentPackage;
     }
 }
