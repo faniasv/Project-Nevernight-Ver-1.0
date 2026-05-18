@@ -29,7 +29,7 @@ MonoBehaviour:
       audioAsset: {fileID: 0}
       spriteAsset: {fileID: 21300000, guid: 5009ad2fa8a51074991cdd49ad87d1ad, type: 3}
   - characterName: Minion
-    lineText: Bayar dulu sewa apartemennya...
+    lineText: Bayar dulu sewa apartemennya!
     commands:
     - type: 1
       value: 
@@ -43,5 +43,5 @@ MonoBehaviour:
       audioAsset: {fileID: 0}
       spriteAsset: {fileID: 21300000, guid: 93d40e3a07f297444827a05118da7db5, type: 3}
   - characterName: Minion
-    lineText: Aku hanya khawatir uang itu akan terpakai untuk hal lain
+    lineText: Aku hanya khawatir uang itu akan terpakai untuk hal yang lain
     commands: []

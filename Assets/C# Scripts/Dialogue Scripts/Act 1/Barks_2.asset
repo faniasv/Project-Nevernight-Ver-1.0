@@ -15,7 +15,7 @@ MonoBehaviour:
   keepPanelOpenAtEnd: 0
   lines:
   - characterName: MINION
-    lineText: Berhenti, fokus ke foto itu saja
+    lineText: Berhenti, fokus ke foto itu saja!!
     commands:
     - type: 1
       value: 

@@ -15,7 +15,7 @@ MonoBehaviour:
   keepPanelOpenAtEnd: 0
   lines:
   - characterName: MINION
-    lineText: "Lihat fotonya, Ava\u2026"
+    lineText: Lihat fotonya, Ava!!!
     commands:
     - type: 1
       value: 

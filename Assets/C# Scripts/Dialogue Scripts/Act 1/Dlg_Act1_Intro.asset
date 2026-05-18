@@ -22,14 +22,14 @@ MonoBehaviour:
       audioAsset: {fileID: 0}
       spriteAsset: {fileID: 21300000, guid: 3fe5a4721fd08fc47bba1165d066d955, type: 3}
   - characterName: AVA
-    lineText: Oke, tenang... kita pasti bisa tidur
+    lineText: Oke, tenang... aku pasti bisa tidur
     commands:
     - type: 1
       value: 
       audioAsset: {fileID: 0}
       spriteAsset: {fileID: 21300000, guid: fefa11c2cd852f144ab308e9c8a7d412, type: 3}
   - characterName: MINION
-    lineText: Astaga, gimana nih? Banyak banget yang perlu dikerjain sekarang.
+    lineText: Astaga, gimana nih?! Banyak banget yang perlu dikerjain sekarang.
     commands:
     - type: 1
       value: 
@@ -63,19 +63,19 @@ MonoBehaviour:
     lineText: Mungkin bayar besok saja?
     commands: []
   - characterName: MINION
-    lineText: Ah, tapi dia tidak punya waktu
+    lineText: Ah, tapi Ava tidak punya waktu
     commands: []
   - characterName: MINION
-    lineText: Dia harus membuat presentasi itu untuk rapat sore
+    lineText: Ava harus membuat presentasi itu untuk rapat sore
     commands: []
   - characterName: MINION
-    lineText: Bagaimana dia luangin waktu?
+    lineText: Bagaimana cara Ava bisa meluangkan waktunya?
     commands: []
   - characterName: MINION
-    lineText: Gimana kalo ada yang ngajak dia makan siang bareng?
+    lineText: Gimana kalo ada yang ngajak Ava makan siang bareng?!
     commands: []
   - characterName: MINION
-    lineText: Dia terlalu takut untuk bilang tidak...
+    lineText: Ava terlalu takut untuk bilang tidak.
     commands: []
   - characterName: AVA
     lineText: Bisa... berhenti bicara?
@@ -88,23 +88,23 @@ MonoBehaviour:
     lineText: Aku hanya ingin tidur.
     commands: []
   - characterName: MINION
-    lineText: Apa? Tidur? Tidak bisa
+    lineText: Apa? Tidur? Tidak bisa!
     commands:
     - type: 1
       value: 
       audioAsset: {fileID: 0}
       spriteAsset: {fileID: 21300000, guid: 41ec49d6f283cf34cb036e062c0be2da, type: 3}
   - characterName: MINION
-    lineText: Kamu belum selesai bikin target buat proyek desainmu.
+    lineText: Kamu belum selesai bikin target buat proyek desainmu!
     commands: []
   - characterName: MINION
     lineText: Oh, ini juga
     commands: []
   - characterName: MINION
-    lineText: ' Jangan lupa, besok ulang tahun rekan kerjamu'
+    lineText: ' Jangan lupa, besok ulang tahun rekan kerjamu!'
     commands: []
   - characterName: MINION
-    lineText: Kamu harus membeli kado yang sempurna.
+    lineText: Kamu harus membeli kado yang sempurna!
     commands:
     - type: 1
       value: 
@@ -115,14 +115,14 @@ MonoBehaviour:
     commands: []
   - characterName: MINION
     lineText: Kamu tidak bisa melakukannya di siang hari karena kamu harus ikut makan
-      siang tim
+      siang bersama tim!
     commands:
     - type: 1
       value: 
       audioAsset: {fileID: 0}
       spriteAsset: {fileID: 21300000, guid: 976c5a881d85b4743a5d31f74f6ec50c, type: 3}
   - characterName: MINION
-    lineText: Aku tahu kamu tidak akan bisa menolaknya
+    lineText: Aku tahu kamu tidak akan bisa menolaknya.
     commands:
     - type: 1
       value: 
@@ -136,37 +136,37 @@ MonoBehaviour:
       audioAsset: {fileID: 0}
       spriteAsset: {fileID: 21300000, guid: 93d40e3a07f297444827a05118da7db5, type: 3}
   - characterName: AVA
-    lineText: ya... sebentar
+    lineText: Sebentar ya biarkan aku berpikir
     commands:
     - type: 1
       value: 
       audioAsset: {fileID: 0}
       spriteAsset: {fileID: 21300000, guid: f28c52487a794dc42a6e477e87e5fa96, type: 3}
   - characterName: AVA
-    lineText: ...maaf, aku bingung banget
+    lineText: Maaf, tapi aku bingung banget...
     commands:
     - type: 1
       value: 
       audioAsset: {fileID: 0}
       spriteAsset: {fileID: 21300000, guid: 9bf943f71623c264885804e87a446f0f, type: 3}
   - characterName: AVA
-    lineText: Oke. Apa yang harus kulakukan?
+    lineText: Oke. Apa yang harus aku lakukan?
     commands: []
   - characterName: MINION
-    lineText: Buat daftar....
+    lineText: Buat daftar!
     commands: []
   - characterName: MINION
-    lineText: ....hal-hal yang harus kamu lakukan sekarang
+    lineText: Tentang hal-hal yang harus kamu lakukan sekarang!
     commands: []
   - characterName: MINION
-    lineText: Jadi semuanya berjalan lancar besok
+    lineText: Jadi, semuanya bisa berjalan lancar besok.
     commands: []
   - characterName: AVA
-    lineText: 'I-itu banyak sekali... '
+    lineText: I-itu banyak sekali sih
     commands: []
   - characterName: AVA
-    lineText: Bagaimana cara mengaturnya?
+    lineText: Bagaimana cara mengaturnya?!
     commands: []
   - characterName: MINION
-    lineText: Pilih 3 dari 6 tugas, pilih yang penting oke?
+    lineText: Pilih 3 dari 6 tugas, pilih yang penting, oke?
     commands: []

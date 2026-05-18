@@ -162,7 +162,8 @@ PlayerSettings:
   resetResolutionOnWindowResize: 0
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
-  applicationIdentifier: {}
+  applicationIdentifier:
+    Standalone: com.DefaultCompany.Project-Nevernight-Ver-1.0
   buildNumber:
     Standalone: 0
     VisionOS: 0
@@ -602,11 +603,11 @@ PlayerSettings:
   m_MobileRenderingPath: 1
   metroPackageName: ProjectNevernightVer1.0
   metroPackageVersion: 1.0.0.0
-  metroCertificatePath: 
+  metroCertificatePath: Assets/WSATestCertificate.pfx
   metroCertificatePassword: 
-  metroCertificateSubject: 
-  metroCertificateIssuer: 
-  metroCertificateNotAfter: 0000000000000000
+  metroCertificateSubject: DefaultCompany
+  metroCertificateIssuer: DefaultCompany
+  metroCertificateNotAfter: 004f8d9f8703de01
   metroApplicationDescription: Project Nevernight Ver 1.0
   wsaImages: {}
   metroTileShortName: Project Nevernight Ver 1.0

@@ -25,8 +25,8 @@ MonoBehaviour:
     lineText: "Iya. Kenangan dan perasaan itu\u2026"
     commands: []
   - characterName: AVA
-    lineText: "\u2026 mereka bukan lagi hal asing yang perlu kuhindari. Mereka adalah
-      bagian dari warnaku"
+    lineText: Mereka bukan lagi hal asing yang perlu kuhindari. Mereka adalah bagian
+      dari warna yang membentuk diriku
     commands: []
   - characterName: MINION
     lineText: Lalu, apa yang akan kamu lakukan sekarang?

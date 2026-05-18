@@ -15,21 +15,21 @@ MonoBehaviour:
   keepPanelOpenAtEnd: 0
   lines:
   - characterName: Minion
-    lineText: Kamu tidak menyusun untuk menyelesaikan presentasi...
+    lineText: Kamu tidak memilih untuk menyelesaikan presentasi?!
     commands:
     - type: 1
       value: 
       audioAsset: {fileID: 0}
       spriteAsset: {fileID: 21300000, guid: bff574c99f1bd214e808cef7cc10fa71, type: 3}
   - characterName: Ava
-    lineText: Maaf, kurasa aku hanya kewalahan
+    lineText: Maaf, kurasa aku hanya kewalahan?
     commands:
     - type: 0
       value: 
       audioAsset: {fileID: 0}
       spriteAsset: {fileID: 21300000, guid: 3fe5a4721fd08fc47bba1165d066d955, type: 3}
   - characterName: Minion
-    lineText: ' Jadi, kapan kamu akan mengerjakannya?'
+    lineText: Jadi, kapan kamu akan mengerjakannya?
     commands:
     - type: 1
       value: 

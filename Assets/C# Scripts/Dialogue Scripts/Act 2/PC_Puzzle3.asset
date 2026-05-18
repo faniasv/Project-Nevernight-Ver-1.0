@@ -40,29 +40,28 @@ MonoBehaviour:
       itu lagi
     commands: []
   - characterName: MINION
-    lineText: Kehidupan dewasa perlahan menelan mimpi kecilmu
+    lineText: Kehidupan dewasa perlahan menelan mimpi masa kecilmu
     commands:
     - type: 1
       value: 
       audioAsset: {fileID: 0}
       spriteAsset: {fileID: 21300000, guid: 976c5a881d85b4743a5d31f74f6ec50c, type: 3}
   - characterName: MINION
-    lineText: "\u2026 tapi tidak ada kata terlambat"
+    lineText: Tapi tidak ada kata terlambat
     commands:
     - type: 1
       value: 
       audioAsset: {fileID: 0}
       spriteAsset: {fileID: 21300000, guid: f61bb87e9b9ec2e4fb1f598ec9d74239, type: 3}
   - characterName: MINION
-    lineText: "untuk melihat bintang itu bersinar\u2026"
+    lineText: "Untuk melihat bintang itu bersinar\u2026"
     commands: []
   - characterName: MINION
-    lineText: "yang ada di dalam dirimu\u2026"
+    lineText: "Yang ada di dalam dirimu\u2026"
     commands: []
   - characterName: AVA
     lineText: "Mungkin\u2026"
     commands: []
   - characterName: AVA
-    lineText: "\u2026 tanpa kusadari, bintang yang paling bersinar adalah diriku
-      sendiri"
+    lineText: Tanpa kusadari, bintang yang paling bersinar adalah diriku sendiri
     commands: []

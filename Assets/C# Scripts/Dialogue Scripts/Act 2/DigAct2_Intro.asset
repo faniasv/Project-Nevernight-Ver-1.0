@@ -50,7 +50,7 @@ MonoBehaviour:
       audioAsset: {fileID: 0}
       spriteAsset: {fileID: 21300000, guid: bff574c99f1bd214e808cef7cc10fa71, type: 3}
   - characterName: AVA
-    lineText: Iya... sepertinya begitu
+    lineText: Iya, sepertinya begitu...
     commands:
     - type: 1
       value: 
@@ -65,7 +65,7 @@ MonoBehaviour:
       spriteAsset: {fileID: 21300000, guid: bff574c99f1bd214e808cef7cc10fa71, type: 3}
   - characterName: AVA
     lineText: Nggak tahu, mungkin belakangan ini aku lagi capek banget, makanya jadi
-      sering salah
+      sering melakukan kesalahan
     commands:
     - type: 1
       value: 
@@ -82,10 +82,10 @@ MonoBehaviour:
       audioAsset: {fileID: 0}
       spriteAsset: {fileID: 21300000, guid: 9bf943f71623c264885804e87a446f0f, type: 3}
   - characterName: AVA
-    lineText: Frustrasi... dan sedih juga
+    lineText: Frustrasi dan sedih juga
     commands: []
   - characterName: MINION
-    lineText: Rasanya cukup berat ya buat kamu?
+    lineText: Rasanya cukup berat ya buat kamu?!
     commands:
     - type: 1
       value: 
@@ -93,21 +93,21 @@ MonoBehaviour:
       spriteAsset: {fileID: 21300000, guid: 0ec1120d3dfe0db41920161ae21e9ca0, type: 3}
   - characterName: AVA
     lineText: Mungkin, tapi aku harus sembunyiin itu agar kegiatanku berjalan dengan
-      baik
+      baik.
     commands:
     - type: 1
       value: 
       audioAsset: {fileID: 0}
       spriteAsset: {fileID: 21300000, guid: 5009ad2fa8a51074991cdd49ad87d1ad, type: 3}
   - characterName: MINION
-    lineText: Pernah nyoba buat... lepasin aja?
+    lineText: Pernah mencoba untuk merelakan saja?
     commands:
     - type: 1
       value: 
       audioAsset: {fileID: 0}
       spriteAsset: {fileID: 21300000, guid: f61bb87e9b9ec2e4fb1f598ec9d74239, type: 3}
   - characterName: AVA
-    lineText: Belum pernah, aku tidak tahu bagaimana caranya
+    lineText: Belum pernah, aku tidak tahu bagaimana caranya merelakan sesuatu...
     commands: []
   - characterName: MINION
     lineText: Hmm, pernah gak kamu coba mengingat dari mana perasaan ini berasal?
@@ -117,7 +117,7 @@ MonoBehaviour:
       audioAsset: {fileID: 0}
       spriteAsset: {fileID: 21300000, guid: bff574c99f1bd214e808cef7cc10fa71, type: 3}
   - characterName: AVA
-    lineText: Tidak perlu, aku hanya perlu kembali menyusun tugas itu
+    lineText: Tidak perlu, aku hanya perlu kembali menyusun tugas itu!
     commands:
     - type: 1
       value: 
@@ -139,7 +139,7 @@ MonoBehaviour:
       audioAsset: {fileID: 0}
       spriteAsset: {fileID: 21300000, guid: 5009ad2fa8a51074991cdd49ad87d1ad, type: 3}
   - characterName: AVA
-    lineText: Tapi vas di sini retak dan tidak berwarna
+    lineText: Tapi vas di sini retak dan tidak berwarna.
     commands: []
   - characterName: MINION
     lineText: Haha, mirip seperti perasaanmu kan?
@@ -156,14 +156,14 @@ MonoBehaviour:
       audioAsset: {fileID: 0}
       spriteAsset: {fileID: 21300000, guid: 93d40e3a07f297444827a05118da7db5, type: 3}
   - characterName: MINION
-    lineText: Haha, ayo bantu aku memperbaiki dan mewarnai vas-vas ini
+    lineText: Haha, ayo bantu aku memperbaiki dan mewarnai vas-vas ini.
     commands:
     - type: 1
       value: 
       audioAsset: {fileID: 0}
       spriteAsset: {fileID: 21300000, guid: bf7144a2c7d302f48a72d461613e455a, type: 3}
   - characterName: MINION
-    lineText: Pilih yang membuatmu tertarik, Ava
+    lineText: Pilih yang membuatmu tertarik, Ava.
     commands: []
   - characterName: AVA
     lineText: Kenapa aku harus peduli sama vas-vas ini?
@@ -173,8 +173,8 @@ MonoBehaviour:
       audioAsset: {fileID: 0}
       spriteAsset: {fileID: 21300000, guid: 93d40e3a07f297444827a05118da7db5, type: 3}
   - characterName: MINION
-    lineText: Mungkin di dalamnya ada sesuatu yang pernah kamu pendam dan berusaha
-      lupakan
+    lineText: Mungkin di dalamnya, ada sesuatu yang pernah kamu pendam dan berusaha
+      lupakan selama ini
     commands:
     - type: 1
       value: 

@@ -35,14 +35,14 @@ MonoBehaviour:
     lineText: Apakah hidupmu sekarang sesuai bayangan Ava saat berusia lima tahun?
     commands: []
   - characterName: AVA
-    lineText: "Yah, secara pencapaian\u2026"
+    lineText: Yah, secara pencapaian...
     commands:
     - type: 1
       value: 
       audioAsset: {fileID: 0}
       spriteAsset: {fileID: 21300000, guid: 3fe5a4721fd08fc47bba1165d066d955, type: 3}
   - characterName: AVA
-    lineText: "\u2026 tapi aku merasa tidak berkarya, hanya mengejar target"
+    lineText: Tapi aku merasa tidak berkarya, hanya mengejar target
     commands: []
   - characterName: AVA
     lineText: Ava versi umur lima tahun itu akan sedih mendengarnya
@@ -76,5 +76,5 @@ MonoBehaviour:
       audioAsset: {fileID: 0}
       spriteAsset: {fileID: 21300000, guid: 5009ad2fa8a51074991cdd49ad87d1ad, type: 3}
   - characterName: AVA
-    lineText: "\u2026 yang menatap karyanya dengan mata berbinar"
+    lineText: Yang menatap karyanya dengan mata berbinar
     commands: []

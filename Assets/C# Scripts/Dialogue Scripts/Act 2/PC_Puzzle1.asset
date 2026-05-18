@@ -15,14 +15,14 @@ MonoBehaviour:
   keepPanelOpenAtEnd: 0
   lines:
   - characterName: AVA
-    lineText: "Dulu, tangan ini terasa begitu besar\u2026"
+    lineText: Dulu, tangan ini terasa begitu besar, hangat, dan menenangkan
     commands:
     - type: 1
       value: 
       audioAsset: {fileID: 0}
       spriteAsset: {fileID: 21300000, guid: 9bf943f71623c264885804e87a446f0f, type: 3}
   - characterName: AVA
-    lineText: "\u2026 seolah sanggup melindungiku dari apa pun"
+    lineText: Seolah sanggup melindungiku dari apa pun
     commands: []
   - characterName: MINION
     lineText: Tangan yang sama yang selalu menuntunmu saat kamu takut melangkah
@@ -32,7 +32,7 @@ MonoBehaviour:
       audioAsset: {fileID: 0}
       spriteAsset: {fileID: 21300000, guid: 0ec1120d3dfe0db41920161ae21e9ca0, type: 3}
   - characterName: AVA
-    lineText: Sekarang tanganku sudah besar, tapi aku justru merasa tersesat
+    lineText: Sekarang tanganku sudah besar, tapi aku justru merasa kehilangan arah
     commands:
     - type: 1
       value: 
@@ -42,17 +42,17 @@ MonoBehaviour:
     lineText: Aku rindu rasa aman saat berjalan...
     commands: []
   - characterName: AVA
-    lineText: tanpa harus tahu arahnya ke mana
+    lineText: Tanpa harus tahu arahnya ke mana
     commands: []
   - characterName: MINION
-    lineText: "Dulu kamu masih hanya anak kecil\u2026"
+    lineText: Dulu kamu masih hanya anak kecil
     commands:
     - type: 1
       value: 
       audioAsset: {fileID: 0}
       spriteAsset: {fileID: 21300000, guid: f61bb87e9b9ec2e4fb1f598ec9d74239, type: 3}
   - characterName: MINION
-    lineText: dan dewasa membuatmu merasa harus berusaha menentukan arah itu sendiri
+    lineText: Dan dewasa membuatmu merasa harus berusaha menentukan arah itu sendiri
     commands:
     - type: 1
       value: 

@@ -15,7 +15,7 @@ MonoBehaviour:
   keepPanelOpenAtEnd: 0
   lines:
   - characterName: MINION
-    lineText: Cukup, lihatlah ke foto di meja itu
+    lineText: Cukup, lihatlah ke foto di meja itu!
     commands:
     - type: 1
       value: 

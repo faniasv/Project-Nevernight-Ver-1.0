@@ -15,7 +15,7 @@ MonoBehaviour:
   keepPanelOpenAtEnd: 0
   lines:
   - characterName: Minion
-    lineText: Kenapa tidak merencanakan kado yang keren?
+    lineText: Kenapa tidak merencanakan kado yang keren?!
     commands:
     - type: 1
       value: 
@@ -29,14 +29,14 @@ MonoBehaviour:
       audioAsset: {fileID: 0}
       spriteAsset: {fileID: 21300000, guid: 5009ad2fa8a51074991cdd49ad87d1ad, type: 3}
   - characterName: Ava
-    lineText: kado sederhana saja sudah cukup ya kan?
+    lineText: ... iya, kan?
     commands:
     - type: 0
       value: 
       audioAsset: {fileID: 0}
       spriteAsset: {fileID: 21300000, guid: f28c52487a794dc42a6e477e87e5fa96, type: 3}
   - characterName: Minion
-    lineText: Tidak juga, dia pernah membelikanmu barang yang mahal
+    lineText: Tidak juga, dia pernah membelikanmu barang yang mahal!
     commands:
     - type: 1
       value: 

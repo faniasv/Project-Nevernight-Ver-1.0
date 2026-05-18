@@ -940,7 +940,7 @@ MonoBehaviour:
   - panel: {fileID: 355223423}
     caption: Terbangun dengan kebisingkan pikiran
     sfxName: City
-    ambienceClip: {fileID: 8300000, guid: 0278907db288e5e4bb2e588f266067d9, type: 3}
+    ambienceClip: {fileID: 8300000, guid: 34da87f8d70907f4b97441b51b372db8, type: 3}
   - panel: {fileID: 196096273}
     caption: di tengah hari-hari yang memuakkan
     sfxName: Mouse
