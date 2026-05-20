@@ -603,6 +603,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dfcfd8f95550ef14a83870f54dea7b1b, type: 3}
+--- !u!114 &309659014 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6188875132099526046, guid: dfcfd8f95550ef14a83870f54dea7b1b, type: 3}
+  m_PrefabInstance: {fileID: 309659013}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &402077325
 GameObject:
   m_ObjectHideFlags: 0
@@ -2021,10 +2032,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1406222410}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d187a138bfda1b4db4d1588a130126c, type: 3}
+  m_Script: {fileID: 11500000, guid: 7f04a215483d4d143857190a83887c64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  transitionPanel: {fileID: 1332813261}
+  transitionPanel: {fileID: 309659014}
   transitionTime: 1
 --- !u!1 &1477062702
 GameObject:
@@ -2893,7 +2904,7 @@ SceneRoots:
   m_Roots:
   - {fileID: 28266548}
   - {fileID: 131520028}
+  - {fileID: 309659013}
   - {fileID: 1866096747}
   - {fileID: 59593641}
   - {fileID: 1608337781}
-  - {fileID: 309659013}

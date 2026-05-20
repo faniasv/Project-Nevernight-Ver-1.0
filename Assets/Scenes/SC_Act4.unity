@@ -536,6 +536,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dfcfd8f95550ef14a83870f54dea7b1b, type: 3}
+--- !u!114 &315135263 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6188875132099526046, guid: dfcfd8f95550ef14a83870f54dea7b1b, type: 3}
+  m_PrefabInstance: {fileID: 315135262}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &376034466
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -854,7 +865,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 386430142}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1837,8 +1848,11 @@ MonoBehaviour:
   mentalLoadSlider: {fileID: 0}
   maxLoad: 150
   dialogueManager: {fileID: 0}
+  minion: {fileID: 0}
+  ovtManager: {fileID: 0}
   ovtReminderDialogues:
   - {fileID: 11400000, guid: 16efeb4858a37d24991867023b60b30d, type: 2}
+  guidingBarks: []
   allTasksInLevel:
   - taskID: Finance
     taskLoad: 50
@@ -1858,8 +1872,6 @@ MonoBehaviour:
   - taskID: Work2
     taskLoad: 50
     forgottenDialogue: {fileID: 11400000, guid: 14b296433747b104c9a3de882b352649, type: 2}
-  overloadDialogue: {fileID: 11400000, guid: 16efeb4858a37d24991867023b60b30d, type: 2}
-  ovtManager: {fileID: 0}
 --- !u!1 &788887421
 GameObject:
   m_ObjectHideFlags: 0
@@ -2192,16 +2204,17 @@ MonoBehaviour:
   dialoguePanel: {fileID: 1209882018}
   dialogueTextUI: {fileID: 1116924836}
   nameTextUI: {fileID: 0}
-  characterImagePanel: {fileID: 1691322290}
+  avaExpressionImage: {fileID: 0}
+  minionExpressionImage: {fileID: 0}
   animator: {fileID: 1209882020}
   minionColor: {r: 0.9811321, g: 0.7152355, b: 0.27305093, a: 1}
   avaColor: {r: 0.43921572, g: 0.5137255, b: 0.9607844, a: 1}
   typingSounds:
   - {fileID: 8300000, guid: a8d0c2ff4087f9e4390b47513160a074, type: 3}
   frequencyLevel: 2
-  dialogueAudioSource: {fileID: 899109184}
   typingVolume: 0.5
   charactersPerSecond: 15
+  isDialogueActive: 0
 --- !u!1 &920674729
 GameObject:
   m_ObjectHideFlags: 0
@@ -3262,10 +3275,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1251738518}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d187a138bfda1b4db4d1588a130126c, type: 3}
+  m_Script: {fileID: 11500000, guid: 7f04a215483d4d143857190a83887c64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  transitionPanel: {fileID: 480911295}
+  transitionPanel: {fileID: 315135263}
   transitionTime: 1
 --- !u!1001 &1255885535
 PrefabInstance:
@@ -4846,8 +4859,8 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 987406050}
-  - {fileID: 315135262}
   - {fileID: 386430144}
-  - {fileID: 386249324}
+  - {fileID: 315135262}
   - {fileID: 1731527685}
+  - {fileID: 386249324}
   - {fileID: 154654721}

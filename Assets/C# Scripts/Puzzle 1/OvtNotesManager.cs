@@ -21,7 +21,9 @@ public class OvtNotesManager : MonoBehaviour
     public DialogueManager dialogueManager; 
     public AudioSource dialogueAudio;      
     public Puzzle1_Manager puzzleManager;
-    public LevelLoader levelLoader; 
+    public PlayerDataManager playerDataManager;
+    public TelemetryNetworkPipeline telemetryPipeline;
+
 
     private List<GameObject> activeNotes = new List<GameObject>();
     private int currentAttempt;
@@ -30,6 +32,10 @@ public class OvtNotesManager : MonoBehaviour
     [Header("UI Blocker")]
     [Tooltip("Tarik 'Puzzle1_Panel' ke sini agar tombol Kerjakan mati saat OVT")]
     public CanvasGroup puzzleCanvasGroup;
+
+    // Telemetry Data
+    private float tunnelVisionStartTime;
+    private bool isTunnelVisionActive = false;
 
     void Start()
     {
@@ -44,7 +50,15 @@ public class OvtNotesManager : MonoBehaviour
 
     public IEnumerator TriggerOVT (int attemptCount)
     {
-        // 1. Muncul suara glitch
+        // 1. Memasukkan data Telemetri: Stopwatch On
+        if (!isTunnelVisionActive)
+        {
+            tunnelVisionStartTime = Time.time;
+            isTunnelVisionActive = true;
+            Debug.Log("<color=yellow>[Telemetry]</color> Stopwatch Tunnel Vision DIMULAI!");
+        }
+
+        // 2. Muncul suara glitch
         if (AudioManager.instance != null) AudioManager.instance.PlaySFX("GlitchFatal");
         currentAttempt = attemptCount;
 
@@ -52,7 +66,7 @@ public class OvtNotesManager : MonoBehaviour
         if (puzzleCanvasGroup != null) puzzleManager.SetPuzzleInteractive(false);
         if (dialogueAudio != null) dialogueAudio.Stop();
         
-        // 2. Mengosongkan teks
+        // 3. Mengosongkan teks
         if (dialogueManager != null) 
         {
             // Kita hentikan coroutine pengetikan teks agar tidak lanjut muncul
@@ -64,7 +78,7 @@ public class OvtNotesManager : MonoBehaviour
             if (txt != null) txt.text = ""; 
         }
         
-        // 3. Jeda 1.5f sebelum notes muncul
+        // 4. Jeda sebelum notes muncul
         activeNotes.Clear();
         List<string> shuffledThoughts = new List<string>(thoughtPool);
         for (int i = 0; i < shuffledThoughts.Count; i++) {
@@ -77,7 +91,7 @@ public class OvtNotesManager : MonoBehaviour
         int notesToSpawn = 7 + (attemptCount - 3); 
         notesToSpawn = Mathf.Min(notesToSpawn, shuffledThoughts.Count); 
 
-        // 4. Munculkan notes satu per satu
+        // 5. Munculkan notes satu per satu
         for (int i = 0; i < notesToSpawn; i++)
         {
             SpawnNote(shuffledThoughts[i]);
@@ -150,31 +164,42 @@ public class OvtNotesManager : MonoBehaviour
     // --- FUNGSI KLIK FOTO KE ACT 2 ---
     public void OnPhotoClicked()
     {
+        // Memasukkan data Telemetri: Stopwatch Berhenti
+        if (isTunnelVisionActive)
+        {
+            float duration = Time.time - tunnelVisionStartTime;
+            isTunnelVisionActive = false; // Matikan agar tidak ke-trigger dua kali
+            Debug.Log($"<color=cyan>[Telemetry]</color> Tunnel Vision Time berhenti");
+
+            if (playerDataManager != null)
+            {
+                playerDataManager.SessionData.timeToObserveExit = duration;
+                Debug.Log($"<color=cyan>[Telemetry]</color> Tunnel Vision Time: {duration:F2} detik");
+            }
+        }
+
+        // AMAN: Kirim data telemetri SEBELUM panel transisi menutup scene
+        if (telemetryPipeline != null)
+        {
+            telemetryPipeline.SendTelemetryData();
+            Debug.Log("<color=cyan>[TelemetryPipeline]</color> Perintah kirim data diaktifkan!");
+        }
+
         StartCoroutine(TransitionRoutine());
         if (AudioManager.instance != null) AudioManager.instance.PlaySFX("MouseClick");
     }
 
     private IEnumerator TransitionRoutine()
     {
-
         // 1. Munculkan Photocard Memori
         if (photocardPanel != null) photocardPanel.SetActive(true);
         
-        // 2. Beri waktu player meresapi foto (3.5 detik)
-        yield return new WaitForSeconds(2.5f);
+        // 2. Beri waktu player meresapi foto sekaligus memberi waktu jaringan mengirim data (4-5 detik agar aman di WebGL)
+        yield return new WaitForSeconds(4.5f);
 
-        // 3. Panggil LevelLoader lo untuk pindah scene
-        if (levelLoader != null)
-        {
-            levelLoader.LoadNextScene("SC_Act2"); 
-        }
-        else if (LevelLoader.instance != null) // Backup pakai Singleton kalau slot Inspector lupa diisi
-        {
-            LevelLoader.instance.LoadNextScene("SC_Act2");
-        }
-        else
-        {
-            Debug.LogError("OvtNotesManager: LevelLoader tidak ditemukan!");
-        }
+        Debug.Log("<color=green>[OvtManager]</color> Memanggil Event Pindah ke Act 2...");
+        
+        // 3. Panggil Game Events setelah dipastikan data terkirim lewat latar belakang
+        GameEvents.OnActChanged?.Invoke(3);
     }
 }

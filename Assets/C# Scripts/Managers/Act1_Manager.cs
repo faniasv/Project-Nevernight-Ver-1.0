@@ -7,6 +7,7 @@ public class Act1_Manager : MonoBehaviour
     [SerializeField] private Puzzle1_Manager puzzle1Manager;
     [SerializeField] private DialogueData introDialogue;
     [SerializeField] private Minion_Act1 minion;
+    public PlayerDataManager playerDataManager;
 
     void Start()
     {
@@ -37,10 +38,13 @@ public class Act1_Manager : MonoBehaviour
 
         if (puzzle1Manager != null)
         {
-            // Munculkan Puzzle (Visible = true, Interactable = true)
+            // 1. Munculkan visual Puzzle
             puzzle1Manager.SetPuzzleState(true, true);
             
-            // Minion jadi diam
+            // 2. KUNCI DI SINI: Nyalakan stopwatch telemetri secara tegas!
+            puzzle1Manager.StartDecisionStopwatch();
+            
+            // 3. Minion jadi diam
             if(minion != null) minion.SetToPuzzleMode();
         }
     }

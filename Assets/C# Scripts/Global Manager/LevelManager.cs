@@ -29,6 +29,17 @@ public class LevelManager : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        // Buka tirai jadi terang saat game pertama kali dijalankan (Main Menu / Intro)
+        if (transitionPanel != null)
+        {
+            transitionPanel.color = new Color(0, 0, 0, 1f); // Set hitam pekat
+            transitionPanel.gameObject.SetActive(true);
+            StartCoroutine(Fade(0f)); // Perlahan jadi transparan
+        }
+    }
+
     private void OnEnable()
     {
         GameEvents.OnActChanged += LoadAct;

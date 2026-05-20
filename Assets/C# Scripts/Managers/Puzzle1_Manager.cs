@@ -26,6 +26,8 @@ public class Puzzle1_Manager : MonoBehaviour
     public DialogueManager dialogueManager;
     [SerializeField] private Minion_Act1 minion;
     public OvtNotesManager ovtManager;
+    public PlayerDataManager playerDataManager;
+    public TelemetryNetworkPipeline telemetryPipeline;
 
     [Header("OVT Reminders")]
     public List<DialogueData> ovtReminderDialogues; 
@@ -37,6 +39,12 @@ public class Puzzle1_Manager : MonoBehaviour
     public List<TaskData> allTasksInLevel;
 
     private int attemptCounter = 0;
+
+    // VARIABLE TELEMETRI 
+    private bool isStopwatchRunning = false;
+    private float decisionTimer = 0f;
+    private bool hasMadeFirstAction = false;
+
     private Dictionary<int, string> occupiedSlots = new Dictionary<int, string>();
 
     private void OnEnable() => DialogueManager.OnDialogueEnded += ReboundPuzzle;
@@ -52,11 +60,40 @@ public class Puzzle1_Manager : MonoBehaviour
             mentalLoadSlider.value = 0;
         }
 
+        hasMadeFirstAction = false; 
+        isStopwatchRunning = false;
+        decisionTimer = 0f;
+
         SetPuzzleState(false, false);
+    }
+
+    void Update()
+    {
+        // Menghitung waktu Decision Paralysis
+        if (isStopwatchRunning && !hasMadeFirstAction)
+        {
+            decisionTimer += Time.deltaTime;
+        }
     }
 
     public void OnTaskDroppedOnSlot(int slotIndex, string taskID)
     {
+        Debug.Log($"<color=white>[Puzzle1 Debug]</color> Fungsi OnTaskDroppedOnSlot dipanggil! Slot: {slotIndex}");
+
+        // Hitung telemetri jika stopwatch aktif dan belum pernah melakukan drop sebelumnya
+        if (isStopwatchRunning && !hasMadeFirstAction && decisionTimer > 0.05f)
+        {
+            hasMadeFirstAction = true;
+            isStopwatchRunning = false; // Stop timer di Update
+
+            if (playerDataManager != null)
+            {
+                playerDataManager.SessionData.timeToFirstAction = decisionTimer;
+                Debug.Log($"<color=cyan>[Telemetry]</color> Decision Paralysis Time: {decisionTimer:F2} detik BERHASIL DISIMPAN!");
+            }
+        }
+
+        // Lanjutan logika slot bawaanmu...
         if (occupiedSlots.ContainsKey(slotIndex)) occupiedSlots[slotIndex] = taskID;
         else occupiedSlots.Add(slotIndex, taskID);
         UpdateSliderVisual();
@@ -96,14 +133,26 @@ public class Puzzle1_Manager : MonoBehaviour
         yield return new WaitForSeconds(1.5f);
         if (errorPanel != null) errorPanel.SetActive(false);
 
+        // 1. Counter Kegagalan
         attemptCounter++;
         Debug.Log($"<color=orange>[Puzzle1]</color> Attempt Gagal ke: <b>{attemptCounter}</b>");
+        
+        // 2. Masukkan data counter ke data telemetri
+        if (playerDataManager != null)
+        {
+            playerDataManager.SessionData.failedAttempts = attemptCounter;
+            Debug.Log($"<color=yellow>[Telemetry]</color> failedAttempts ke: <b>{attemptCounter}</b>");
+        }
+
+        GameEvents.OnTaskFailed?.Invoke();
 
         DialogueData dialogueToPlay = null;
         if(minion != null) minion.SetToPuzzleMode();
 
         if (attemptCounter >= 3)
         {
+            GameEvents.OnPlayerStuck?.Invoke();
+
             if (ovtManager != null) 
             {
                 yield return StartCoroutine(ovtManager.TriggerOVT(attemptCounter));
@@ -160,6 +209,17 @@ public class Puzzle1_Manager : MonoBehaviour
         }
         if (puzzlePanel != null && !puzzlePanel.activeSelf)
             puzzlePanel.SetActive(true);
+    }
+
+    // === PEMICU BARU: Panggil fungsi ini tepat saat Intro Selesai ===
+    public void StartDecisionStopwatch()
+    {
+        if (!hasMadeFirstAction)
+        {
+            isStopwatchRunning = true;
+            decisionTimer = 0f; // Reset dari 0
+            Debug.Log("<color=yellow>[Telemetry]</color> Stopwatch Decision Paralysis RESMI DIMULAI VIA ACT1_MANAGER!");
+        }
     }
 
     public void PlayOvtDialogue()
