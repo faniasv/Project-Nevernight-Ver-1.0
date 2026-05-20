@@ -7,11 +7,10 @@ public class LevelManager : MonoBehaviour
 {
     public static LevelManager Instance { get; private set; }
 
-    [Header ("UI Reference")]
-    // Image utk transisi antar Scene nanti
+    [Header("UI Reference")]
     public Image transitionPanel;
 
-    [Header ("Settings")]
+    [Header("Settings")]
     public float transitionTime = 1.0f;
 
     private void Awake()
@@ -32,17 +31,14 @@ public class LevelManager : MonoBehaviour
 
     private void OnEnable()
     {
-        // Jika ada perintah OnActChanged, panggil fungsi LoadAct
         GameEvents.OnActChanged += LoadAct;
     }
 
     private void OnDisable()
     {
-        // Selalu lepas pendaftaran saat script mati untuk mencegah error
         GameEvents.OnActChanged -= LoadAct;
     }
 
-    // Fungsi untuk menerjemahkan Angka Act menjadi Nama Scene di Unity.
     public void LoadAct(int actNumber)
     {
         string targetScene = "";
@@ -60,7 +56,11 @@ public class LevelManager : MonoBehaviour
 
         if (!string.IsNullOrEmpty(targetScene))
         {
-            // Jalankan mesin transisinya
+            // Perbarui data Act di dalam session telemetri sebelum pindah scene
+            if (PlayerDataManager.Instance != null)
+            {
+                PlayerDataManager.Instance.SessionData.currentAct = actNumber;
+            }
             StartCoroutine(FadeAndLoad(targetScene));
         }
     }
@@ -69,31 +69,19 @@ public class LevelManager : MonoBehaviour
     {
         if (transitionPanel != null) 
         {
-            // PENTING: Paksa Alpha jadi 0 sebelum panel diaktifkan
             transitionPanel.color = new Color(0, 0, 0, 0);
             transitionPanel.gameObject.SetActive(true);
         }
 
-        // Mulai Audio Fade Out
-        if (AudioManager.instance != null) {
-            StartCoroutine(AudioManager.instance.FadeBGM(0.3f, transitionTime));
-        }
-
-        // 1. Mulai menutup tirai (Layar jadi hitam)
-        yield return StartCoroutine(Fade(2)); 
+        // 1. Tutup Tirai Hitam (Target Alpha maksimal adalah 1.0f, bukan 2f)
+        yield return StartCoroutine(Fade(1f)); 
 
         SceneManager.LoadScene(sceneName);
 
-        // Tunggu scene baru benar-benar siap dan ActAudioLoader di scene baru jalan
         yield return new WaitForSeconds(0.3f); 
 
-        // 2. Mulai Audio Fade In (Kembali ke volume 1 untuk lagu di scene baru)
-        if (AudioManager.instance != null) {
-            StartCoroutine(AudioManager.instance.FadeBGM(1.0f, transitionTime));
-        }
-
-        // 3. Mulai membuka tirai
-        yield return StartCoroutine(Fade(0));
+        // 2. Buka Tirai Kembali ke Terang (Target Alpha 0f)
+        yield return StartCoroutine(Fade(0f));
 
         if (transitionPanel != null) transitionPanel.gameObject.SetActive(false);
     }
@@ -102,7 +90,6 @@ public class LevelManager : MonoBehaviour
     {
         if (transitionPanel == null) yield break;
 
-        // Pastikan panel aktif saat proses fade
         transitionPanel.gameObject.SetActive(true);
         
         float startAlpha = transitionPanel.color.a;
@@ -116,10 +103,8 @@ public class LevelManager : MonoBehaviour
             yield return null;
         }
 
-        // Pastikan nilai akhir tepat
         transitionPanel.color = new Color(0, 0, 0, targetAlpha);
         
-        // Jika layar sudah terang (Alpha 0), matikan panel agar tidak menghalangi klik mouse pemain
         if (targetAlpha == 0) transitionPanel.gameObject.SetActive(false);
     }
 }

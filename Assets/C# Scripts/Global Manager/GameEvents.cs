@@ -1,44 +1,19 @@
 using System;
-using UnityEngine;
 
-public class GameEvents : MonoBehaviour
+public static class GameEvents
 {
-    // ==== Global State Variables === 
-
-    // Dipanggil saat ada aksi yang menambah beban mental Ava.
-    // Int= Jumlah beban yang ditambahkan (misal: 10)
-    public static Action<int> OnAvaLoadAdded;
-
-    // Dipanggil GameManager saat total beban mental berubah.
-    // Int= Total beban saat ini (untuk update UI Slider)
-    public static Action<int> OnAvaLoadChanged;
-
-    // Dipanggil saat pindah Act.
-    // Int= Nomor Act tujuan (misal: 2)
+    // ==== Global State Events ====
+    // Dipanggil oleh manajer untuk memerintahkan LevelManager pindah babak
     public static Action<int> OnActChanged;
-    
-    // ==== ACT 1: Task Puzzle Events === 
 
-    // Dipanggil saat pemain gagal menaruh tugas di papan.
+    // ==== ACT 1: Task Puzzle Events (Analyst District) ====
+    // Dipanggil setiap kali pemain menekan Save tapi menghasilkan Error/Overload
     public static Action OnTaskFailed;
 
-    // Dipanggil saat pemain kehabisan jatah gagal (misal: sudah 3x salah).
+    // Dipanggil saat attemptCounter mencapai batas maksimal (3x salah)
     public static Action OnPlayerStuck;
 
-    // ==== ACT 2: Vase Puzzle Events === 
-
-    // Dipanggil saat seluruh kepingan vas sudah terpasang dengan benar.
+    // ==== ACT 2: Vase Puzzle Events (Memory Market) ====
+    // Dipanggil saat satu vas kenangan berhasil dirakit utuh
     public static Action OnVaseCompleted;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

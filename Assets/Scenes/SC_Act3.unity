@@ -1674,8 +1674,9 @@ GameObject:
   - component: {fileID: 1309888615}
   - component: {fileID: 1309888614}
   - component: {fileID: 1309888616}
+  - component: {fileID: 1309888617}
   m_Layer: 5
-  m_Name: Bubble_Panel
+  m_Name: Bubble_Spawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1754,6 +1755,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Padding: {x: 0, y: 0, z: 0, w: 0}
   m_Softness: {x: 0, y: 0}
+--- !u!114 &1309888617
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1309888612}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23e43bded024fd947b9bf3a199f69192, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  puzzleManager: {fileID: 1580946821}
+  bubblePrefab: {fileID: 0}
+  spawnPoint: {fileID: 412021589}
+  endPoint: {fileID: 137008180}
+  laneDistance: 120
+  scrollSpeed: 250
+  spawnInterval: 1.2
+  bubbleSprites:
+  - {fileID: 21300000, guid: 57d8bc1a475d1ff4eaa75e2b89bbbac0, type: 3}
+  - {fileID: 21300000, guid: 5be1185c03f7bb04b9949adb27542fd3, type: 3}
+  - {fileID: 21300000, guid: b22d38caaefb7e24286ddab0ed76227f, type: 3}
+  - {fileID: 21300000, guid: b619a73d14af99b4d85c062265955a8f, type: 3}
+  - {fileID: 21300000, guid: 1c09cdc0415b7f14dbd0506b3c185602, type: 3}
+  - {fileID: 21300000, guid: f60211a55cb99454a85d9b9c717ef1fb, type: 3}
 --- !u!1 &1332813259
 GameObject:
   m_ObjectHideFlags: 0
@@ -1905,6 +1932,54 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1392453515}
   m_CullTransparentMesh: 1
+--- !u!1 &1404579779
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1404579780}
+  - component: {fileID: 1404579781}
+  m_Layer: 0
+  m_Name: Act3_Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1404579780
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1404579779}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1866096747}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1404579781
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1404579779}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72af4dae5f6c5c44ba0203b00d49dacf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  puzzleManager: {fileID: 1580946821}
+  openingDialogueUI: {fileID: 0}
+  puzzleGameplayUI: {fileID: 1089500363}
+  exitDialogueUI: {fileID: 0}
 --- !u!1 &1406222410
 GameObject:
   m_ObjectHideFlags: 0
@@ -2180,10 +2255,12 @@ MonoBehaviour:
   bubblePrefab: {fileID: 2739178084055601596, guid: 3fdd2f48064ed154fa3d1cc8b1d7995f, type: 3}
   spawnPoint: {fileID: 412021589}
   endPoint: {fileID: 137008180}
+  bubbleSpawner: {fileID: 1309888617}
   laneDistance: 120
   scrollSpeed: 250
   spawnInterval: 1.2
-  targetScorePerLevel: 5
+  chatEndingPrefab: {fileID: 0}
+  chatPositions: []
 --- !u!1 &1608337779
 GameObject:
   m_ObjectHideFlags: 0
@@ -2410,6 +2487,7 @@ Transform:
   - {fileID: 402077326}
   - {fileID: 995346474}
   - {fileID: 1406222411}
+  - {fileID: 1404579780}
   - {fileID: 1580946820}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
