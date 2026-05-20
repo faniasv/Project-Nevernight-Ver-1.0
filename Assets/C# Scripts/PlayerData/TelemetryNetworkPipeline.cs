@@ -8,7 +8,7 @@ public class TelemetryNetworkPipeline : MonoBehaviour
     public static TelemetryNetworkPipeline Instance { get; private set; }
 
     [Header("Konfigurasi API Google Sheets")]
-    public string webAppUrl = "https://script.google.com/macros/s/AKfycbypEw8M8nTgwU3oUF6WRLApKyMtjEGWk7NsMW8gZk3tNkUgNjXQOq3StNU99VJdsCqytQ/exec";
+    public string webAppUrl = "https://script.google.com/macros/s/AKfycbxHsma0HWQePS5QiuK0nzfFOAaL7toUJzjLHZC2LdVb5Dal5qoSahhkfocQ2lFACW_VVg/exec";
 
     // 1. INJEKSI VARIABEL MANUAL INSPECTOR
     [Header("Data Reference")]
