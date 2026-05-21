@@ -60,8 +60,9 @@ public class LevelManager : MonoBehaviour
             case 1: targetScene = "SC_Intro"; break;
             case 2: targetScene = "SC_Act1"; break;
             case 3: targetScene = "SC_Act2"; break;
-            case 4: targetScene = "SC_Act3"; break;
-            case 5: targetScene = "SC_Act4"; break;
+            case 4: targetScene = "SC_Act2-5"; break;
+            case 5: targetScene = "SC_Act3"; break;
+            case 6: targetScene = "SC_Act4"; break;
             default: targetScene = "SC_MainMenu"; break;
         }
 

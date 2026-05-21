@@ -14,8 +14,9 @@ public class Act2_Manager : MonoBehaviour
     [Header("System References")]
     public DialogueManager dialogueManager;
     public Puzzle2_Manager puzzle2Manager; 
-    [SerializeField] private string mainMenuSceneName = "MainMenu";
     [SerializeField] private Minion_Act2 minion;
+    public PlayerDataManager playerDataManager;
+    public TelemetryNetworkPipeline telemetryNetworkPipeline;
 
     [Header("Narration Data")]
     public DialogueData openingDialogue;  
@@ -24,9 +25,9 @@ public class Act2_Manager : MonoBehaviour
     [Header("Visual Settings")]
     [Header("Visual Settings")]
     public Image[] vaseImages; 
-// Warna menyala (Putih bersih, Alpha 1)
+    // Warna menyala (Putih bersih, Alpha 1)
     public Color completedColor = new Color(1f, 1f, 1f, 1f); 
-// Warna pudar/redup (Abu-abu gelap, Alpha tetep 1 biar gak transparan)
+    // Warna pudar/redup (Abu-abu gelap, Alpha tetep 1 biar gak transparan)
     public Color uncompletedColor = new Color(0.5f, 0.5f, 0.5f, 0.5f);     
     private int completedVases = 0;
     private int totalVases = 3; 
@@ -114,10 +115,9 @@ public class Act2_Manager : MonoBehaviour
         {
             dialogueManager.StartDialogue(endingDialogue, () => {
                 Debug.Log("SISTEM LIMBIK STABIL. Menuju Act 3...");
-                
-                // Ganti "Act3_SceneName" dengan nama scene Act 3 lo yang bener
-                // SceneManager.LoadScene("Act3_SceneName"); 
-                SceneManager.LoadScene(mainMenuSceneName);
+
+                // Pindah Scene setelah semua proses pencatatan beres
+                SceneManager.LoadScene("SC_Act2-5");
             });
         }
     }

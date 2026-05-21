@@ -43,6 +43,7 @@ public class Act1_Manager : MonoBehaviour
             
             // 2. KUNCI DI SINI: Nyalakan stopwatch telemetri secara tegas!
             puzzle1Manager.StartDecisionStopwatch();
+            Debug.Log("<color=cyan>[Telemetry]</color> Decision Stopwatch Menyala");
             
             // 3. Minion jadi diam
             if(minion != null) minion.SetToPuzzleMode();
