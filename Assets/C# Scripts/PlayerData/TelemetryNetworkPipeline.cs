@@ -8,7 +8,7 @@ public class TelemetryNetworkPipeline : MonoBehaviour
     public static TelemetryNetworkPipeline Instance { get; private set; }
 
     [Header("Konfigurasi API Google Sheets")]
-    public string webAppUrl = "https://script.google.com/macros/s/AKfycbxHsma0HWQePS5QiuK0nzfFOAaL7toUJzjLHZC2LdVb5Dal5qoSahhkfocQ2lFACW_VVg/exec";
+    public string webAppUrl = "https://script.google.com/macros/s/AKfycbxKkDIrZPkBLDfQJbLPTMBTzhYQ5qxNf1VU0Jo_6W_c0K8_m8_3X2enoYfOoCd9aAdKkg/exec";
 
     // 1. INJEKSI VARIABEL MANUAL INSPECTOR
     [Header("Data Reference")]
@@ -61,24 +61,32 @@ public class TelemetryNetworkPipeline : MonoBehaviour
 
     private IEnumerator PostToGoogleSheets(string json)
     {
-        Debug.Log($"<color=orange>[Telemetry Pipeline]</color> Mengunggah data ke Google Sheets... \nPayload: {json}");
+        Debug.Log($"<color=orange>[Telemetry Pipeline]</color> Mengunggah JSON mentah via Bypass Text... \nPayload: {json}");
 
         using (UnityWebRequest request = new UnityWebRequest(webAppUrl, "POST"))
         {
+            // Ubah JSON string menjadi array byte (Raw Data)
             byte[] bodyRaw = System.Text.Encoding.UTF8.GetBytes(json);
             request.uploadHandler = new UploadHandlerRaw(bodyRaw);
             request.downloadHandler = new DownloadHandlerBuffer();
-            request.SetRequestHeader("Content-Type", "application/json");
+
+            // TRICK KHUSUS WEBGL:
+            // JANGAN gunakan "application/json" karena akan memicu blokir CORS di itch.io.
+            // Gunakan "text/plain" agar dianggap aman oleh browser.
+            request.SetRequestHeader("Content-Type", "text/plain");
+
+            // Matikan pembatasan HTTP Continue (mencegah error pelacakan)
+            request.useHttpContinue = false;
 
             yield return request.SendWebRequest();
 
             if (request.result != UnityWebRequest.Result.Success)
             {
-                Debug.LogError($"<color=red>[Telemetry Pipeline]</color> Upload Gagal: {request.error}");
+                Debug.LogError($"<color=red>[Telemetry Pipeline]</color> Upload Gagal: {request.error} | Response Code: {request.responseCode}");
             }
             else
             {
-                Debug.Log($"<color=green>[Telemetry Pipeline]</color> Upload Sukses! Server merespons: {request.downloadHandler.text}");
+                Debug.Log($"<color=green>[Telemetry Pipeline]</color> Upload Sukses! Jawaban server: {request.downloadHandler.text}");
             }
         }
     }
