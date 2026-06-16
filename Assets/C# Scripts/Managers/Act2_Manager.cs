@@ -22,7 +22,6 @@ public class Act2_Manager : MonoBehaviour
     public DialogueData endingDialogue; // Dialog penutup Act 2 (setelah 5 vas)
 
     [Header("Visual Settings")]
-    [Header("Visual Settings")]
     public Image[] vaseImages; 
 // Warna menyala (Putih bersih, Alpha 1)
     public Color completedColor = new Color(1f, 1f, 1f, 1f); 

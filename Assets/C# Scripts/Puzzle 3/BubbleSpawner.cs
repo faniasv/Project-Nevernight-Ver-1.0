@@ -5,25 +5,24 @@ using UnityEngine;
 public class BubbleSpawner : MonoBehaviour
 {
     [Header("Referensi Utama")]
-    public Puzzle3_Manager puzzleManager; // Seret objek _Managers ke sini
+    public Puzzle3_Manager puzzleManager; 
 
     [Header("Referensi UI Canvas")]
-    public GameObject bubblePrefab;      // Prefab gelembung UI
-    public RectTransform spawnPoint;     // Titik spawn sebelah kanan luar layar
-    public RectTransform endPoint;       // Titik batas kiri luar layar
+    public GameObject bubblePrefab;      
+    public RectTransform spawnPoint;     
+    public RectTransform endPoint;       
 
     [Header("Pengaturan Jalur & Kecepatan")]
-    public float laneDistance = 120f;    // Jarak antar jalur (atas/bawah)
-    public float scrollSpeed = 250f;     // Kecepatan jalan balon ke kiri
-    public float spawnInterval = 1.2f;   // Jeda waktu spawn (detik)
+    public float laneDistance = 120f;    
+    public float scrollSpeed = 250f;     
+    public float spawnInterval = 1.2f;   
     
     [Header("Aset Visual Balon")]
-    public List<Sprite> bubbleSprites;   // Variasi gambar balon Naïve Art
+    public List<Sprite> bubbleSprites;   
 
     private List<bool> spawnPool = new List<bool>();
     private Coroutine spawnCoroutine;
 
-    // Fungsi untuk mulai menyalakan mesin spawn (Dipanggil dari Puzzle3_Manager)
     public void StartSpawning()
     {
         GenerateSpawnPool();
@@ -31,7 +30,6 @@ public class BubbleSpawner : MonoBehaviour
         spawnCoroutine = StartCoroutine(SpawnLoop());
     }
 
-    // Fungsi untuk menghentikan spawn balon (Dipanggil saat game over/clear)
     public void StopSpawning()
     {
         if (spawnCoroutine != null) StopCoroutine(spawnCoroutine);
@@ -41,7 +39,6 @@ public class BubbleSpawner : MonoBehaviour
     {
         while (true)
         {
-            // Hanya bikin balon kalau game TIDAK SEDANG FREEZE
             if (puzzleManager != null && !puzzleManager.IsSystemFrozen)
             {
                 SpawnBubble();
@@ -50,17 +47,12 @@ public class BubbleSpawner : MonoBehaviour
         }
     }
 
-    // Mengatur antrean rasio tepat 1 Jujur (True) : 5 Defensif (False)
     public void GenerateSpawnPool()
     {
         spawnPool.Clear();
-        spawnPool.Add(true); // 1 Kata jujur
-        for (int i = 0; i < 5; i++)
-        {
-            spawnPool.Add(false); // 5 Kata defensif
-        }
+        spawnPool.Add(true); // 1 Jujur
+        for (int i = 0; i < 5; i++) spawnPool.Add(false); // 5 Defensif
 
-        // Acak urutan list (Fisher-Yates Shuffle)
         for (int i = 0; i < spawnPool.Count; i++)
         {
             bool temp = spawnPool[i];
@@ -72,50 +64,49 @@ public class BubbleSpawner : MonoBehaviour
 
     void SpawnBubble()
     {
-        if (bubblePrefab == null || spawnPoint == null || puzzleManager == null) return;
-        if (puzzleManager.GetCurrentPackage() == null) return;
+        // CCTV: Cek apakah ada yang menahan proses spawn!
+        if (bubblePrefab == null) { Debug.Log("❌ GAGAL SPAWN: Prefab kosong!"); return; }
+        if (spawnPoint == null) { Debug.Log("❌ GAGAL SPAWN: SpawnPoint kosong!"); return; }
+        if (puzzleManager == null) { Debug.Log("❌ GAGAL SPAWN: Manager kosong!"); return; }
+        if (puzzleManager.GetCurrentPackage() == null) { Debug.Log("❌ GAGAL SPAWN: Paket Soal kosong!"); return; }
 
-        // Jika isi bensin antrean habis, isi ulang lalu acak lagi
-        if (spawnPool.Count == 0)
-        {
-            GenerateSpawnPool();
-        }
+        if (spawnPool.Count == 0) GenerateSpawnPool();
 
-        // 1. Kloning Prefab Gelembung di dalam Canvas UI
         GameObject go = Instantiate(bubblePrefab, spawnPoint.parent);
-        go.transform.localScale = Vector3.one; // Reset skala biar tidak gepeng
+        go.transform.localScale = Vector3.one; 
 
-        // 2. Atur Posisi & Jalur (Lane) acak: Atas (120), Tengah (0), Bawah (-120)
         int randomLane = Random.Range(-1, 2); 
         float yOffset = randomLane * laneDistance;
         Vector3 startPos = spawnPoint.localPosition;
         startPos.y += yOffset;
         go.transform.localPosition = startPos;
 
-        // 3. Tentukan isi gelembung berdasarkan antrean pool
         bool isGood = spawnPool[0];
-        spawnPool.RemoveAt(0); // Hapus antrean terdepan yang barusan diambil
+        spawnPool.RemoveAt(0); 
 
         QuestionPackage currentPackage = puzzleManager.GetCurrentPackage();
-        string chosenText = "";
+        string chosenText = "...";
 
-        if (isGood)
+        // Mencegah error kalau list kata-katamu di Inspector belum diisi
+        if (isGood && currentPackage.goodAnswers.Count > 0)
         {
             chosenText = currentPackage.goodAnswers[Random.Range(0, currentPackage.goodAnswers.Count)];
         }
-        else
+        else if (!isGood && currentPackage.badAnswers.Count > 0)
         {
             chosenText = currentPackage.badAnswers[Random.Range(0, currentPackage.badAnswers.Count)];
         }
 
-        // 4. Pilih Gambar Balon Acak
         Sprite chosenSprite = (bubbleSprites.Count > 0) ? bubbleSprites[Random.Range(0, bubbleSprites.Count)] : null;
 
-        // 5. Kirim data ke script ThoughtBubble
         ThoughtBubble script = go.GetComponent<ThoughtBubble>();
         if (script != null)
         {
             script.Setup(chosenSprite, chosenText, isGood, scrollSpeed, endPoint.localPosition.x);
+        }
+        else
+        {
+            Debug.Log("❌ GAGAL SPAWN: Prefab gelembung tidak punya skrip ThoughtBubble!");
         }
     }
 }

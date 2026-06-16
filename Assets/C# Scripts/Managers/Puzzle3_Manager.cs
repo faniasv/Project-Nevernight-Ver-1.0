@@ -13,11 +13,18 @@ public class QuestionPackage
     public List<string> badAnswers;
 }
 
+// 1. DATA STRUKTUR BARU UNTUK CHAT ENDING
+[System.Serializable]
+public class ChatDialogue
+{
+    [TextArea(2, 3)]
+    public string message;
+    [Tooltip("Centang jika ini ucapan Ava (Kanan), kosongkan jika Minion (Kiri)")]
+    public bool isAva; 
+}
+
 public class Puzzle3_Manager : MonoBehaviour
 {
-    [Header("Referensi Utama Act 3")]
-    private Act3_Manager act3MainManager; // Otomatis dicari saat Start
-
     [Header("Konfigurasi Paket Soal")]
     public List<QuestionPackage> allPackages;
     
@@ -27,66 +34,53 @@ public class Puzzle3_Manager : MonoBehaviour
     [Header("Referensi UI")]
     public TextMeshProUGUI boardText;
     public Image trafficLight;
-    public GameObject bubblePrefab;
-    public RectTransform spawnPoint;
-    public RectTransform endPoint;
+    public GameObject endingTunnel;   
 
-    [Header("Referensi Spawner Baru")]
+    [Header("Referensi Spawner")]
     public BubbleSpawner bubbleSpawner;
 
-    [Header("Pengaturan Gameplay")]
-    public float laneDistance = 120f;
-    public float scrollSpeed = 250f;
-    public float spawnInterval = 1.2f;
-
-    [Header("Referensi Ending Chat di Tunnel (Internal Exit Condition)")]
+    [Header("Referensi Ending Chat di Tunnel")]
     public GameObject chatEndingPrefab; 
     public List<RectTransform> chatPositions; // 5 Titik RectTransform di dalam tunnel UI
 
-    private bool isFrozen = true; // Set true di awal agar tidak spawn sebelum opening selesai
+    [Header("Pengaturan Warna & Skenario Chat")]
+    public Color minionBubbleColor = Color.white;
+    public Color avaBubbleColor = new Color(0.6f, 0.85f, 1f); // Default Biru Muda untuk Ava
+    public List<ChatDialogue> endingDialogues; // Isi dialog dari Inspector
+
+    private bool isFrozen = false; 
     private bool isGameEnded = false;
     private int currentPackageIndex = 0;
     private QuestionPackage currentPackage;
-    private List<bool> spawnPool = new List<bool>();
 
     public bool IsSystemFrozen => isFrozen;
 
-    private List<string> endingDialogues = new List<string>()
-    {
-        "Ternyata... selama ini aku cuma takut.",
-        "Takut kalau berhenti sebentar saja, aku akan tertinggal jauh.",
-        "Tapi tubuhku sudah tidak bisa bohong lagi.",
-        "Maaf ya, sudah memaksamu terlalu keras.",
-        "Let's rest first."
-    };
-
     void Start()
     {
-        // Cari script sutradara besarnya di scene
-        act3MainManager = FindObjectOfType<Act3_Manager>();
         SetTrafficLight(true);
+        StartProtoGameplay();
     }
 
-    // Fungsi ini dipanggil dari Act3_Manager setelah opening selesai
-    public void StartPuzzleGameplay()
+    void StartProtoGameplay()
     {
         isFrozen = false;
         if (allPackages != null && allPackages.Count > 0)
         {
+            Debug.Log("Semua paket aman? Meluncur ges");
             LoadPackage(0);
         }
     
-        // Perintahkan script spawner terpisah untuk mulai bekerja!
-        if (bubbleSpawner != null) bubbleSpawner.StartSpawning();
+        if (bubbleSpawner != null) 
+            Debug.Log("Bubble Start Spawning dipanggil");
+            bubbleSpawner.StartSpawning();
+            Debug.Log("Bubble jalan yeay");
     }
 
     public void LoadPackage(int index)
     {
         if (index >= allPackages.Count)
         {
-            // Jika menang, matikan mesin spawner dulu
             if (bubbleSpawner != null) bubbleSpawner.StopSpawning();
-        
             StartCoroutine(PlayTunnelChatSequence());
             return;
         }
@@ -96,22 +90,6 @@ public class Puzzle3_Manager : MonoBehaviour
         boardText.text = currentPackage.questionText;
 
         if (bubbleSpawner != null) bubbleSpawner.GenerateSpawnPool();
-    }
-
-    
-    void GenerateSpawnPool()
-    {
-        spawnPool.Clear();
-        spawnPool.Add(true); // 1 Jujur
-        for (int i = 0; i < 5; i++) spawnPool.Add(false); // 5 Defensif
-
-        for (int i = 0; i < spawnPool.Count; i++)
-        {
-            bool temp = spawnPool[i];
-            int randomIndex = Random.Range(i, spawnPool.Count);
-            spawnPool[i] = spawnPool[randomIndex];
-            spawnPool[randomIndex] = temp;
-        }
     }
 
     public void OnBubbleClicked(bool isCorrect)
@@ -125,9 +103,9 @@ public class Puzzle3_Manager : MonoBehaviour
     IEnumerator FreezeSystem()
     {
         isFrozen = true;
-        SetTrafficLight(false); // Merah
+        SetTrafficLight(false); 
         yield return new WaitForSeconds(3f); 
-        SetTrafficLight(true); // Hijau
+        SetTrafficLight(true); 
         isFrozen = false;
     }
 
@@ -143,41 +121,71 @@ public class Puzzle3_Manager : MonoBehaviour
         LoadPackage(currentPackageIndex);
     }
 
-    // URUTAN PERCAKAPAN TUNNEL (EXIT CONDITION PUZZLE)
     IEnumerator PlayTunnelChatSequence()
     {
+        if (endingTunnel != null) endingTunnel.SetActive(true);
         isGameEnded = true;
         isFrozen = true;
-        boardText.text = ""; // Bersihkan papan kuning
+        boardText.text = ""; 
 
-        // Bersihkan balon gameplay yang tersisa
         ThoughtBubble[] activeBubbles = FindObjectsOfType<ThoughtBubble>();
         foreach (ThoughtBubble b in activeBubbles) Destroy(b.gameObject);
 
         yield return new WaitForSeconds(1f);
 
-        // Munculkan chat satu per satu di dalam terowongan
         for (int i = 0; i < endingDialogues.Count; i++)
         {
+            // Hapus syarat bubbleSpawner == null di sini biar ga error kalau spawner ga kepake lagi
             if (i >= chatPositions.Count || chatEndingPrefab == null) break;
 
-            GameObject chatGo = Instantiate(chatEndingPrefab, spawnPoint.parent);
+            // 🔥 PERUBAHANNYA DI SINI COY:
+            // Kita jadikan endingTunnel sebagai parent (induk) tempat chat ini muncul!
+            Transform chatParent = endingTunnel != null ? endingTunnel.transform : transform;
+            GameObject chatGo = Instantiate(chatEndingPrefab, chatParent);
+            
             chatGo.transform.localScale = Vector3.one;
             chatGo.transform.localPosition = chatPositions[i].localPosition;
 
+            // AMBIL KOMPONEN GAMBAR & TEKS
+            Image bubbleImage = chatGo.GetComponent<Image>();
             TextMeshProUGUI chatText = chatGo.GetComponentInChildren<TextMeshProUGUI>();
-            if (chatText != null) chatText.text = endingDialogues[i];
+
+            // CEK SIAPA YANG BICARA
+            if (endingDialogues[i].isAva) 
+            {
+                // JIKA AVA: Balik arah (Flip) dan ubah warna ke warna Ava
+                Vector3 flippedScale = chatGo.transform.localScale;
+                flippedScale.x = -1f; 
+                chatGo.transform.localScale = flippedScale;
+
+                if (bubbleImage != null) bubbleImage.color = avaBubbleColor;
+
+                // Kembalikan Scale X pada teksnya ke -1 agar tulisannya tidak ikut terbalik/cermin
+                if (chatText != null)
+                {
+                    Vector3 textScale = chatText.transform.localScale;
+                    textScale.x = -1f;
+                    chatText.transform.localScale = textScale;
+                }
+            }
+            else
+            {
+                // JIKA MINION: Arah normal, ubah warna ke warna Minion
+                if (bubbleImage != null) bubbleImage.color = minionBubbleColor;
+            }
+
+            // SET TEKS DIALOGNYA
+            if (chatText != null) 
+            {
+                chatText.text = endingDialogues[i].message;
+            }
 
             yield return new WaitForSeconds(2.5f); 
         }
 
-        yield return new WaitForSeconds(1.5f); // Beri waktu baca kalimat terakhir "Let's rest first"
-
-        // SELESAI! Lapor ke Act3_Manager kalau puzzle dan chat tunnel sudah tuntas
-        if (act3MainManager != null)
-        {
-            act3MainManager.OnPuzzle3Complete();
-        }
+        yield return new WaitForSeconds(1.5f); 
+        boardText.text = "PROTOTYPE SUCKSEED!";
+        Debug.Log("Selesai! Seluruh alur inti prototype Puzzle 3 berhasil dieksekusi.");
     }
     
     public QuestionPackage GetCurrentPackage()

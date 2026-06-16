@@ -1,9 +1,8 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using UnityEngine.EventSystems; // 1. WAJIB TAMBAHKAN INI UNTUK UI CLICK
+using UnityEngine.EventSystems;
 
-// 2. Tambahkan ", IPointerClickHandler" di belakang nama class
 public class ThoughtBubble : MonoBehaviour, IPointerClickHandler 
 {
     private Image bubbleImage;
@@ -11,49 +10,50 @@ public class ThoughtBubble : MonoBehaviour, IPointerClickHandler
     private bool isGoodBubble;
     private float moveSpeed;
     private float targetEndX;
+    
+    private Puzzle3_Manager manager;
 
     void Awake()
     {
         bubbleImage = GetComponent<Image>();
         bubbleText = GetComponentInChildren<TextMeshProUGUI>();
+        manager = FindObjectOfType<Puzzle3_Manager>();
     }
 
     public void Setup(Sprite sprite, string text, bool isGood, float speed, float endX)
     {
-        if(bubbleImage != null) bubbleImage.sprite = sprite;
+        if(bubbleImage != null && sprite != null) bubbleImage.sprite = sprite;
         if(bubbleText != null) bubbleText.text = text;
         
         isGoodBubble = isGood;
         moveSpeed = speed;
         targetEndX = endX;
+
+        // CCTV: Bukti kalau balon ini beneran berhasil diciptakan!
+        Debug.Log("🟢 BALON LAHIR! Teks: [" + text + "] | Posisi X: " + transform.localPosition.x);
     }
 
     void Update()
     {
-        // Cek dulu apakah game lagi freeze via manager
-        Puzzle3_Manager manager = FindObjectOfType<Puzzle3_Manager>();
-        if (manager != null && manager.IsSystemFrozen) return; // Berhenti bergerak jika freeze
+        if (manager != null && manager.IsSystemFrozen) return; 
 
-        // Pergerakan UI ke arah kiri
-        transform.localPosition += Vector3.left * moveSpeed * Time.deltaTime;
+        // 1. UBAH ARAH: Vector3.left diganti jadi Vector3.right biar jalannya ke KANAN
+        transform.localPosition += Vector3.right * moveSpeed * Time.deltaTime;
 
-        // Jika sudah melewati End Point X, hancurkan diri
-        if (transform.localPosition.x < targetEndX)
+        // 2. UBAH CEK BATAS: Tanda '<' diganti jadi '>' karena sekarang garis finisnya ada di nilai X positif
+        if (transform.localPosition.x > targetEndX)
         {
+            Debug.Log("🔴 Balon Hancur di X: " + transform.localPosition.x);
             Destroy(gameObject);
         }
     }
 
-    // 3. FUNGSI KLIK UNTUK UI CANVAS
     public void OnPointerClick(PointerEventData eventData)
     {
-        Puzzle3_Manager manager = FindObjectOfType<Puzzle3_Manager>();
         if (manager != null)
         {
-            // Laporkan ke manager apakah gelembung ini benar (Good) atau salah (Bad)
             manager.OnBubbleClicked(isGoodBubble); 
         }
-        
-        Destroy(gameObject); // Hancurkan balon setelah diklik
+        Destroy(gameObject); 
     }
 }
